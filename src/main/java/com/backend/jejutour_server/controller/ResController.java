@@ -1,8 +1,10 @@
 package com.backend.jejutour_server.controller;
 
+import com.backend.jejutour_server.entity.FesEntity;
 import com.backend.jejutour_server.entity.ResEntity;
 import com.backend.jejutour_server.service.ResService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,9 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
 
+@Log4j2
 @RestController
 @RequestMapping("/res")
-@RequiredArgsConstructor
 public class ResController {
 
     @Autowired
@@ -23,11 +25,9 @@ public class ResController {
 
     // 전체 출력
     @GetMapping("/resAllList")
-    public String ResList(Model model) {
-        List<ResEntity> resList = resService.getAllCampList();
-        System.out.println("res facltNm: " + resList.get(4).toString());
-
-        return resList.toString();
+    public List<ResEntity> ResList() {
+        List<ResEntity> resList = resService.getAllResList();
+        return resList;
     }
 
     // 지역별 출력
