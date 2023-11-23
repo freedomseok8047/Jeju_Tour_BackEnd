@@ -32,12 +32,12 @@ public class ResController {
 
     // 지역별 출력
     // /campList/지역코드
-    @GetMapping("/resList/{regionNm}")
-    public List<ResEntity> ResRegionNmList(@PathVariable("regionNm") int regionNm) throws UnsupportedEncodingException {
+    @GetMapping("/resList/{itemsRegion2CdValue}")
+    public List<ResEntity> ResitemsRegion2CdValueList(@PathVariable("itemsRegion2CdValue") int itemsRegion2CdValue) throws UnsupportedEncodingException {
 
         // 지역 코드
         String test = "";
-        switch(regionNm){
+        switch(itemsRegion2CdValue){
             case 1 : test = "제주시내"; break;
             case 2 : test = "애월"; break;
             case 3 : test = "한림"; break;
@@ -54,7 +54,7 @@ public class ResController {
             case 14 : test = "남원"; break;
             case 15 : test = "표선"; break;
         }
-        List<ResEntity> resList = resService.getRegionNmResList(test);
+        List<ResEntity> resList = resService.getitemsRegion2CdValueResList(test);
         return resList;
     }
 

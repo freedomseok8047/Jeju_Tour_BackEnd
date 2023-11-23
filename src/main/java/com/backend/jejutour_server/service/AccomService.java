@@ -8,6 +8,6 @@ public interface AccomService {
 
     public List<AccomEntity> getAllAccomList();
 
-    public List<AccomEntity> getRegionNmAccomList(String regionNm);
+    public List<AccomEntity> getitemsRegion2CdValueAccomList(String itemsRegion2CdValue);
 
 }

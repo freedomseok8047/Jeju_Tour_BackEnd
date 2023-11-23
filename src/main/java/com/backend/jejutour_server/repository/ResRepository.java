@@ -7,5 +7,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface ResRepository extends JpaRepository<ResEntity, Integer> {
-    List<ResEntity> findByRegionNm(String region2cd_label);
+    List<ResEntity> findByitemsRegion2CdValue(String region2cd_label);
 }

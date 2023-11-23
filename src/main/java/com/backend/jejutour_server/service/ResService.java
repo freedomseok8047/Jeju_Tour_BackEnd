@@ -9,6 +9,6 @@ public interface ResService {
 
     public List<ResEntity> getAllCampList();
 
-    public List<ResEntity> getRegionNmResList(String regionNm);
+    public List<ResEntity> getitemsRegion2CdValueResList(String itemsRegion2CdValue);
 
 }

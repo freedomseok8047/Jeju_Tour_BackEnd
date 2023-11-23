@@ -33,12 +33,12 @@ public class AccomController {
 
     // 지역별 출력
     // /campList/지역코드
-    @GetMapping("/accomList/{regionNm}")
-    public List<AccomEntity> AccomRegionNmList(@PathVariable("regionNm") int regionNm) throws UnsupportedEncodingException {
+    @GetMapping("/accomList/{itemsRegion2CdValue}")
+    public List<AccomEntity> AccomitemsRegion2CdValueList(@PathVariable("itemsRegion2CdValue") int itemsRegion2CdValue) throws UnsupportedEncodingException {
 
         // 지역 코드
         String test = "";
-        switch(regionNm){
+        switch(itemsRegion2CdValue){
             case 1 : test = "제주시내"; break;
             case 2 : test = "애월"; break;
             case 3 : test = "한림"; break;
@@ -55,7 +55,7 @@ public class AccomController {
             case 14 : test = "남원"; break;
             case 15 : test = "표선"; break;
         }
-        List<AccomEntity> accomList = accomService.getRegionNmAccomList(test);
+        List<AccomEntity> accomList = accomService.getitemsRegion2CdValueAccomList(test);
         return accomList;
     }
 
