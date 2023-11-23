@@ -1,5 +1,6 @@
 package com.backend.jejutour_server.service;
 
+import com.backend.jejutour_server.entity.AccomEntity;
 import com.backend.jejutour_server.entity.TourEntity;
 import com.backend.jejutour_server.repository.TourRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,11 @@ public class TourServiceImpl implements TourService {
     }
 
     @Override
-    public TourEntity getTour(int tourid) {
-        return null;
+    public List<TourEntity> getitemsRegion2CdValueTourList(String itemsRegion2CdValue) {
+        List<TourEntity> tourList = tourRepository.findByitemsRegion2CdValue(itemsRegion2CdValue);
+        for (int i = 1; i < tourList.size(); i++) {
+            System.out.println("Service tour facltNm: " + tourList.get(i));
+        }
+        return tourList;
     }
 }
