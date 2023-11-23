@@ -23,8 +23,8 @@ public class AccomServiceImpl implements AccomService {
     }
 
     @Override
-    public List<AccomEntity> getitemsRegion2CdValueAccomList(String itemsRegion2CdValue) {
-        List<AccomEntity> accomList = accomRepository.findByitemsRegion2CdValue(itemsRegion2CdValue);
+    public List<AccomEntity> getitemsRegion2CdValueAccomList(Long itemsRegion2CdValue) {
+        List<AccomEntity> accomList = accomRepository.findByItemsRegion2CdValue(itemsRegion2CdValue);
         for (int i = 1; i < accomList.size(); i++) {
             System.out.println("Service accom facltNm: " + accomList.get(i));
         }

@@ -26,8 +26,8 @@ public class TourServiceImpl implements TourService {
     }
 
     @Override
-    public List<TourEntity> getitemsRegion2CdValueTourList(String itemsRegion2CdValue) {
-        List<TourEntity> tourList = tourRepository.findByitemsRegion2CdValue(itemsRegion2CdValue);
+    public List<TourEntity> getItemsRegion2CdValueTourList(Long itemsRegion2CdValue) {
+        List<TourEntity> tourList = tourRepository.findByItemsRegion2CdValue(itemsRegion2CdValue);
         for (int i = 1; i < tourList.size(); i++) {
             System.out.println("Service tour facltNm: " + tourList.get(i));
         }

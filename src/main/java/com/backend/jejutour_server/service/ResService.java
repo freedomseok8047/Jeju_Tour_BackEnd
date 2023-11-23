@@ -9,6 +9,6 @@ public interface ResService {
 
     public List<ResEntity> getAllResList();
 
-    public List<ResEntity> getitemsRegion2CdValueResList(String itemsRegion2CdValue);
+    public List<ResEntity> getItemsRegion2CdValueResList(Long itemsRegion2CdValue);
 
 }
