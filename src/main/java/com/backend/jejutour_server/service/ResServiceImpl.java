@@ -1,12 +1,10 @@
 package com.backend.jejutour_server.service;
 
-import com.backend.jejutour_server.dto.ResDto;
 import com.backend.jejutour_server.entity.ResEntity;
 import com.backend.jejutour_server.repository.ResRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.EntityNotFoundException;
 import java.util.List;
 @Service
 public class ResServiceImpl implements ResService{
@@ -18,7 +16,7 @@ public class ResServiceImpl implements ResService{
         List<ResEntity> resList = resRepository.findAll();
         for (int i = 1; i < resList.size(); i++) {
 
-            System.out.println("Service camp facltNm: " + resList.get(i));
+            System.out.println("Service res facltNm: " + resList.get(i));
         }
         return resList;
     }
@@ -27,7 +25,7 @@ public class ResServiceImpl implements ResService{
     public List<ResEntity> getRegionNmResList(String regionNm) {
         List<ResEntity> resList = resRepository.findByRegionNm(regionNm);
         for (int i = 1; i < resList.size(); i++) {
-            System.out.println("Service camp facltNm: " + resList.get(i));
+            System.out.println("Service res facltNm: " + resList.get(i));
         }
         return resList;
     }
