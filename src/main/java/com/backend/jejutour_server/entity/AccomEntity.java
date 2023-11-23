@@ -16,56 +16,81 @@ import javax.persistence.Table;
 @Setter
 @ToString
 public class AccomEntity {
+
     @Id
-    private int id;
-    @Column(columnDefinition = "text")
+    @Column(name = "accom_id")
+    private Long accomId;
+
+    @Column(name = "items__alltag", length = 255)
     private String itemsAllTag;
-    @Column(columnDefinition = "text")
+
+    @Column(name = "items__contentsid", length = 255)
     private String itemsContentsId;
-    @Column(columnDefinition = "text")
+
+    @Column(name = "items__contentscd__value", length = 255)
     private String itemsContentsCdValue;
-    @Column(columnDefinition = "text")
+
+    @Column(name = "items__contentscd__label", length = 255)
     private String itemsContentsCdLabel;
-    @Column(columnDefinition = "text")
+
+    @Column(name = "items__contentscd__refId", length = 255)
     private String itemsContentsCdRefId;
-    @Column(columnDefinition = "text")
+
+    @Column(name = "items__title", length = 255)
     private String itemsTitle;
-    @Column(columnDefinition = "text")
+
+    @Column(name = "items__region1cd__value", length = 255)
     private String itemsRegion1CdValue;
-    @Column(columnDefinition = "text")
+
+    @Column(name = "items__region1cd__label", length = 255)
     private String itemsRegion1CdLabel;
-    @Column(columnDefinition = "text")
+
+    @Column(name = "items__region1cd__refId", length = 255)
     private String itemsRegion1CdRefId;
-    @Column(columnDefinition = "text")
+
+    @Column(name = "items__region2cd__value")
     private Long itemsRegion2CdValue;
-    @Column(columnDefinition = "text")
+
+    @Column(name = "items__region2cd__label", length = 255)
     private String itemsRegion2CdLabel;
-    @Column(columnDefinition = "text")
+
+    @Column(name = "items__region2cd__refId", length = 255)
     private String itemsRegion2CdRefId;
-    @Column(columnDefinition = "text")
+
+    @Column(name = "items__address", length = 255)
     private String itemsAddress;
-    @Column(columnDefinition = "text")
+
+    @Column(name = "items__roadaddress", length = 255)
     private String itemsRoadAddress;
-    @Column(columnDefinition = "text")
+
+    @Column(name = "items__tag", length = 255)
     private String itemsTag;
-    @Column(columnDefinition = "text")
+
+    @Column(name = "items__introduction", length = 500)
     private String itemsIntroduction;
-    @Column(columnDefinition = "text")
+
+    @Column(name = "items__latitude")
     private Double itemsLatitude;
-    @Column(columnDefinition = "text")
+
+    @Column(name = "items__longitude")
     private Double itemsLongitude;
-    @Column(columnDefinition = "text")
+
+    @Column(name = "items__postcode", length = 255)
     private String itemsPostcode;
-    @Column(columnDefinition = "text")
+
+    @Column(name = "items__phoneno", length = 255)
     private String itemsPhoneNo;
-    @Column(columnDefinition = "text")
-    private String itemsRepPhoto;
-    @Column(columnDefinition = "text")
+
+    @Column(name = "items__repPhoto__descseo", length = 255)
     private String itemsRepPhotoDescSeo;
-    @Column(columnDefinition = "text")
-    private String itemsRepPhotoPhotoIdPhotoId;
-    @Column(columnDefinition = "text")
-    private String itemsRepPhotoPhotoIdImgPath;
-    @Column(columnDefinition = "text")
-    private String itemsRepPhotoPhotoIdThumbnailPath;
+
+    @Column(name = "items__repPhoto__photoid__photoid", length = 255)
+    private String itemsRepPhotoPhotoidPhotoid;
+
+    @Column(name = "items__repPhoto__photoid__imgpath", length = 255)
+    private String itemsRepPhotoPhotoidImgPath;
+
+    @Column(name = "items__repPhoto__photoid__thumbnailpath", length = 255)
+    private String itemsRepPhotoPhotoidThumbnailPath;
+
 }

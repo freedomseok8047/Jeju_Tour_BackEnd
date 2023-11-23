@@ -18,11 +18,15 @@ import javax.persistence.Table;
     @Table(name = "festival")
     public class FesEntity {
 
-        @Id @Column(name = "itemsContentsid")
-        private Long itemsContentsid;
+        @Id
+        @Column(name = "festival_id")
+        private Long festivalId;
 
         @Column(name = "items__alltag", length = 255)
         private String itemsAllTag;
+
+        @Column(name = "items__contentsid", length = 255)
+        private String itemsContentsid;
 
         @Column(name = "items__contentscd__value", length = 255)
         private String itemsContentsCdValue;

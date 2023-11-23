@@ -8,6 +8,7 @@ import org.modelmapper.ModelMapper;
 @Setter
 public class AccomDto {
 
+
     private String alltag;
     private String contentsid;
     private String contentscdValue;

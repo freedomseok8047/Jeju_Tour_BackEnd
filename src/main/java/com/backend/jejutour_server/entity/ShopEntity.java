@@ -15,15 +15,18 @@ import javax.persistence.Table;
 @Setter
 @Repository
 @ToString
-@Table(name = "shop")
+@Table(name = "shopping")
 public class ShopEntity {
 
     @Id
-    @Column(name = "itemsContentsid")
-    private Long itemsContentsid;
+    @Column(name = "shop_id")
+    private Long shopId;
 
     @Column(name = "items__alltag", length = 255)
     private String itemsAllTag;
+
+    @Column(name = "items__contentsid", length = 255)
+    private String itemsContentsid;
 
     @Column(name = "items__contentscd__value", length = 255)
     private String itemsContentsCdValue;
@@ -64,7 +67,7 @@ public class ShopEntity {
     @Column(name = "items__tag", length = 255)
     private String itemsTag;
 
-    @Column(name = "items__introduction", length = 500)
+    @Column(name = "items__introduction", length = 512)
     private String itemsIntroduction;
 
     @Column(name = "items__latitude")
