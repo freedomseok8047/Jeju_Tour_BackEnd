@@ -12,7 +12,7 @@ public class ResServiceImpl implements ResService{
     @Autowired
     private ResRepository resRepository;
     @Override
-    public List<ResEntity> getAllCampList() {
+    public List<ResEntity> getAllResList() {
         List<ResEntity> resList = resRepository.findAll();
         for (int i = 1; i < resList.size(); i++) {
 

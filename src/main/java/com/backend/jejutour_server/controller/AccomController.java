@@ -2,8 +2,10 @@ package com.backend.jejutour_server.controller;
 
 
 import com.backend.jejutour_server.entity.AccomEntity;
+import com.backend.jejutour_server.entity.FesEntity;
 import com.backend.jejutour_server.service.AccomService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,9 +16,9 @@ import org.springframework.web.bind.annotation.RestController;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
 
+@Log4j2
 @RestController
 @RequestMapping("/accom")
-@RequiredArgsConstructor
 public class AccomController {
 
     @Autowired
@@ -24,11 +26,9 @@ public class AccomController {
 
     // 전체 출력
     @GetMapping("/accomAllList")
-    public String AccomList(Model model) {
+    public List<AccomEntity> FesList() {
         List<AccomEntity> accomList = accomService.getAllAccomList();
-        System.out.println("res facltNm: " + accomList.get(4).toString());
-
-        return accomList.toString();
+        return accomList;
     }
 
     // 지역별 출력

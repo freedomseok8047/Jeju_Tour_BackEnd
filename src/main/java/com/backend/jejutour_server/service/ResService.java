@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface ResService {
 
-    public List<ResEntity> getAllCampList();
+    public List<ResEntity> getAllResList();
 
     public List<ResEntity> getitemsRegion2CdValueResList(String itemsRegion2CdValue);
 
