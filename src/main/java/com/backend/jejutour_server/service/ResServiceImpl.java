@@ -22,8 +22,8 @@ public class ResServiceImpl implements ResService{
     }
 
     @Override
-    public List<ResEntity> getitemsRegion2CdValueResList(String itemsRegion2CdValue) {
-        List<ResEntity> resList = resRepository.findByitemsRegion2CdValue(itemsRegion2CdValue);
+    public List<ResEntity> getItemsRegion2CdValueResList(Long itemsRegion2CdValue) {
+        List<ResEntity> resList = resRepository.findByItemsRegion2CdValue(itemsRegion2CdValue);
         for (int i = 1; i < resList.size(); i++) {
             System.out.println("Service res facltNm: " + resList.get(i));
         }

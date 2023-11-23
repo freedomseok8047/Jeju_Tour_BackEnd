@@ -9,5 +9,5 @@ import java.util.List;
 @Repository
 public interface AccomRepository extends JpaRepository<AccomEntity, Integer> {
 
-    List<AccomEntity> findByitemsRegion2CdValue(String region2cd_label);
+    List<AccomEntity> findByItemsRegion2CdValue(Long items_region2cd_value);
 }

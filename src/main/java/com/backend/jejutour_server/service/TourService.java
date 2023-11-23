@@ -8,7 +8,7 @@ import java.util.List;
 public interface TourService {
 
     public List<TourEntity> getAllTourList();
-    public List<TourEntity> getitemsRegion2CdValueTourList(String itemsRegion2CdValue);
+    public List<TourEntity> getItemsRegion2CdValueTourList(Long itemsRegion2CdValue);
 
 
 
