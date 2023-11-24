@@ -23,7 +23,7 @@ public class AccomController {
 
     // 전체 출력
     @GetMapping("/accomAllList")
-    public List<AccomEntity> FesList() {
+    public List<AccomEntity> AccomList() {
         List<AccomEntity> accomList = accomService.getAllAccomList();
         return accomList;
     }
