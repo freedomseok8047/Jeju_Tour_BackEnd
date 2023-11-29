@@ -4,10 +4,7 @@ import com.backend.jejutour_server.entity.TourEntity;
 import com.backend.jejutour_server.service.TourService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.UnsupportedEncodingException;
 import java.util.List;
@@ -52,4 +49,13 @@ public class TourController {
         return tourList;
     }
 
+    @GetMapping("/tourList/tourByGPS")
+    @ResponseBody
+    public List<TourEntity> getToursByGPS(
+            @RequestParam(value = "lat") Double lat,
+            @RequestParam(value = "lnt") Double lnt
+    ) {
+        System.out.println("lat : " + lat + "lnt : " + lnt );
+        return tourService.findToursByGPS(lat, lnt);
+    }
 }

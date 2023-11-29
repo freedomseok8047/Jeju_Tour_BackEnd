@@ -33,4 +33,10 @@ public class TourServiceImpl implements TourService {
         }
         return tourList;
     }
+
+    @Override
+    public List<TourEntity> findToursByGPS(Double lat, Double lnt) {
+        List<TourEntity> tourList = tourRepository.findToursByGPS(lat,lnt);
+        return tourList;
+    }
 }
