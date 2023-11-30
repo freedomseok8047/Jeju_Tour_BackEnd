@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface TourRepository extends JpaRepository<TourEntity,Integer> {
+public interface TourRepository extends JpaRepository<TourEntity,Integer>, TourRepositoryCustom {
 //    @Query("select m.name from TourEntity m")
 //    List<String> findNameList();
 List<TourEntity> findByItemsRegion2CdValue(Long region2cd_label);

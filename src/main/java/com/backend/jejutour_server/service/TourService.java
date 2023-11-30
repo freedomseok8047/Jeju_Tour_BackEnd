@@ -10,6 +10,8 @@ public interface TourService {
     public List<TourEntity> getAllTourList();
     public List<TourEntity> getItemsRegion2CdValueTourList(Long itemsRegion2CdValue);
 
+    public List<TourEntity> findToursByGPS( Double lat, Double lnt);
+
 
 
 }
