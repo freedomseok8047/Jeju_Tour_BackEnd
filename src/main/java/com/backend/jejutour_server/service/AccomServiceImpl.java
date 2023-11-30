@@ -1,6 +1,7 @@
 package com.backend.jejutour_server.service;
 
 import com.backend.jejutour_server.entity.AccomEntity;
+import com.backend.jejutour_server.entity.TourEntity;
 import com.backend.jejutour_server.repository.AccomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,6 +29,12 @@ public class AccomServiceImpl implements AccomService {
         for (int i = 1; i < accomList.size(); i++) {
             System.out.println("Service accom facltNm: " + accomList.get(i));
         }
+        return accomList;
+    }
+
+    @Override
+    public List<AccomEntity> findAccomsByGPS(Double lat, Double lnt) {
+        List<AccomEntity> accomList = accomRepository.findAccomsByGPS(lat,lnt);
         return accomList;
     }
 

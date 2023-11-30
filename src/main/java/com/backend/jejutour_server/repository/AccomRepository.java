@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface AccomRepository extends JpaRepository<AccomEntity, Integer> {
+public interface AccomRepository extends JpaRepository<AccomEntity, Integer>, AccomRepositoryCustom {
 
     List<AccomEntity> findByItemsRegion2CdValue(Long items_region2cd_value);
 }
