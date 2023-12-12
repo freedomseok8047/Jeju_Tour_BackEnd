@@ -7,8 +7,8 @@ import lombok.Setter;
 @Setter
 public class UserDto {
 
+    private String firebaseUid;
     private String name;
     private String email;
-    private Long uid;
 
 }
