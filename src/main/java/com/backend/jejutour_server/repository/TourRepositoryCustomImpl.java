@@ -7,6 +7,10 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
+
 public class TourRepositoryCustomImpl implements TourRepositoryCustom {
     @PersistenceContext
     private EntityManager entityManager;
@@ -25,7 +29,7 @@ public class TourRepositoryCustomImpl implements TourRepositoryCustom {
 
 
     // 위도 경도 기준 n Km 내에 있는 데이터 조회하는 Query
-    public List<TourEntity> findToursByGPS(Double lat, Double lnt) {
+    public Page<TourEntity> findToursByGPS(Double lat, Double lnt , Pageable pageable) {
         // 3km를 미터 단위로 변환
         double radius = 4500; // 4.5km
 
@@ -34,7 +38,13 @@ public class TourRepositoryCustomImpl implements TourRepositoryCustom {
         query.setParameter("lat", lat);
         query.setParameter("lnt", lnt);
         query.setParameter("radius", radius);
+        // Set pagination parameters
+        query.setFirstResult((int) pageable.getOffset());
+        query.setMaxResults(pageable.getPageSize());
 
-        return query.getResultList();
+       List<TourEntity> content = query.getResultList();
+
+       return new PageImpl<>(content);
     }
 }
+//        .limit(pageable.getPageSize())
