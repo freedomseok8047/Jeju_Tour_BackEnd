@@ -22,7 +22,7 @@ public class UserController {
         UserEntity user = new UserEntity();
         user.setName(userdto.getName());
         user.setEmail(userdto.getEmail());
-        user.setUid(userdto.getUid());
+        user.setFirebaseUid(userdto.getFirebaseUid());
 
         UserEntity registeredUser = userService.registerUser(user);
         return ResponseEntity.ok(registeredUser);

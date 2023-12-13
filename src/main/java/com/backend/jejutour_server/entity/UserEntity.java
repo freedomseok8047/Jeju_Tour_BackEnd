@@ -5,10 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "users")
@@ -18,8 +15,12 @@ import javax.persistence.Table;
 public class UserEntity {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
     private Long uid;
+
+    @Column(name = "firebase_uid", unique = true)
+    private String firebaseUid;
 
     @Column(name = "name", length = 255)
     private String name;
@@ -27,5 +28,5 @@ public class UserEntity {
     @Column(name = "email", length = 255)
     private String email;
 
-    // ... 기타 필요한 메서드나 필드
+    // 기타 필요한 메서드나 필드
 }
