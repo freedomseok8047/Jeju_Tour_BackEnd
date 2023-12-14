@@ -57,21 +57,33 @@ public class TourController {
     @GetMapping("/tourList/tourByGPS/")
     @ResponseBody
     public List<TourEntity> getToursByGPS(
-//            @PathVariable("page") Optional<Integer> page,
-//            @RequestParam(value = "size",defaultValue = "5") int size,
+//  인스턴스에 감싸서 보내기
+//  public Page<TourEntity> getToursByGPS(
+
+            //  @GetMapping("/tourList/tourByGPS/{page}")처럼 주소에서 데이터 받아오려면
+            //  => @PathVariable("page") Optional<Integer> page,
+
+            //  size도 변수로 보내려면
+            //  => @RequestParam(value = "size",defaultValue = "5") int size,
+            //  밑에 size부분도 변수로 전달
+            //  => Pageable pageable = PageRequest.of( page, size);
+
             @RequestParam(value = "page", defaultValue = "0") int page,
             @RequestParam(value = "lat") Double lat,
             @RequestParam(value = "lnt") Double lnt
     ) {
-//        Pageable pageable = PageRequest.of(page.isPresent() ? page.get() : 0, 10);
-        Pageable pageable = PageRequest.of( page, 10);
+
+        Pageable pageable = PageRequest.of( page, 5);
         Page<TourEntity> Tours = tourService.findToursByGPS(lat, lnt, pageable);
-//        Page<TourEntity> Tours = tourService.findToursByGPS(lat, lnt, PageRequest.of( page, 10));
 
         System.out.println("lat : " + lat + "lnt : " + lnt );
 
         // Todo getContent() 메서드 사용하면 프런트에서 모델링 필요없음
+        // 인스턴스 껍질 다 까서 컨텐츠 알맹이만 보내기
         return Tours.getContent();
+
+        // 인스턴스에 감싸서 보내기
+        // return Tours;
     }
 
 //    @GetMapping(value = {"/admin/items", "/admin/items/{page}"})
