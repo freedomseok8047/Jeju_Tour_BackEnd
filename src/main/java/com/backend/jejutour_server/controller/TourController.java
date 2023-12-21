@@ -23,10 +23,17 @@ public class TourController {
     TourService tourService;
 
 
+    // tourAllList 페이징 완료
     @GetMapping("/tourAllList")
-    public List<TourEntity> TourList() {
-        List<TourEntity> tourList = tourService.getAllTourList();
-        return tourList;
+    public List<TourEntity> TourList(
+            @RequestParam(value = "page", defaultValue = "0") int page,
+            @RequestParam(value = "size", defaultValue = "5") int size
+    ) {
+        Pageable pageable = PageRequest.of( page, size);
+        Page<TourEntity> allTours = tourService.getAllTourList(pageable);
+        System.out.println("tourAllList 통신 제대로 되나 확인  page : "+ page);
+        return allTours.getContent();
+
     }
 
     @GetMapping("/tourList/{itemsRegion2CdValue}")
