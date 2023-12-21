@@ -57,23 +57,9 @@ public class TourController {
     @GetMapping("/tourList/tourByGPS")
     @ResponseBody
     public List<TourEntity> getToursByGPS(
-//  인스턴스에 감싸서 보내기
-//  public Page<TourEntity> getToursByGPS(
-
-            //  @GetMapping("/tourList/tourByGPS/{page}")처럼 주소에서 데이터 받아오려면
-            //  => @PathVariable("page") Optional<Integer> page,
-
-            //  size도 변수로 보내려면
-            //  => @RequestParam(value = "size",defaultValue = "5") int size,
-            //  밑에 size부분도 변수로 전달
-            //  => Pageable pageable = PageRequest.of( page, size);
-
-
             @RequestParam(value = "lat") Double lat,
             @RequestParam(value = "lnt") Double lnt,
             @RequestParam(value = "page") int page
-//            @RequestParam(value = "page", defaultValue = "0") int page
-//            @RequestParam(value = "page") Integer page
     ) {
 
         Pageable pageable = PageRequest.of( page, 5);
@@ -81,30 +67,7 @@ public class TourController {
 
         System.out.println("통신 제대로 되나 확인 lat : " + lat + " lnt : " + lnt + " page : " + page);
 
-        // Todo getContent() 메서드 사용하면 프런트에서 모델링 필요없음
-        // 인스턴스 껍질 다 까서 컨텐츠 알맹이만 보내기
         return Tours.getContent();
-
-        // 인스턴스에 감싸서 보내기
-        // return Tours;
     }
-
-//    @GetMapping(value = {"/admin/items", "/admin/items/{page}"})
-//    public String itemManage(ItemSearchDto itemSearchDto, @PathVariable("page") Optional<Integer> page, Model model){
-//
-//        System.out.println("넘어온 페이지 값 확인: " + page);
-//        System.out.println("itemSearchDto 의 getSearchSellStatus 내용 : " + itemSearchDto.getSearchSellStatus());
-//        System.out.println("itemSearchDto 의 getSearchCategory 내용 : " + itemSearchDto.getSearchCategory());
-//        System.out.println("itemSearchDto 의 getSearchBy 내용 : " + itemSearchDto.getSearchBy());
-//
-//        Pageable pageable = PageRequest.of(page.isPresent() ? page.get() : 0, 10);
-//        Page<Item> items = itemService.getAdminItemPage(itemSearchDto, pageable);
-//
-//        model.addAttribute("items", items);
-//        model.addAttribute("itemSearchDto", itemSearchDto);
-//        model.addAttribute("maxPage", 5);
-//
-//        return "item/itemMng";
-//    }
 
 }

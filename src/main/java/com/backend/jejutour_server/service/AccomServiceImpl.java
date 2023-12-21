@@ -4,6 +4,8 @@ import com.backend.jejutour_server.entity.AccomEntity;
 import com.backend.jejutour_server.entity.TourEntity;
 import com.backend.jejutour_server.repository.AccomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -33,9 +35,8 @@ public class AccomServiceImpl implements AccomService {
     }
 
     @Override
-    public List<AccomEntity> findAccomsByGPS(Double lat, Double lnt) {
-        List<AccomEntity> accomList = accomRepository.findAccomsByGPS(lat,lnt);
-        return accomList;
+    public Page<AccomEntity> findAccomsByGPS(Double lat, Double lnt, Pageable pageable ) {
+        return accomRepository.findAccomsByGPS(lat,lnt, pageable);
     }
 
 

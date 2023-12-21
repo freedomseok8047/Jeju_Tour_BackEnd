@@ -4,6 +4,8 @@ import com.backend.jejutour_server.entity.ShopEntity;
 import com.backend.jejutour_server.entity.TourEntity;
 import com.backend.jejutour_server.repository.ShopRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -40,9 +42,8 @@ public class ShopServiceImpl implements ShopService{
     }
 
     @Override
-    public List<ShopEntity> findShopsByGPS(Double lat, Double lnt) {
-        List<ShopEntity> shopList = shopRepository.findShopsByGPS(lat,lnt);
-        return shopList;
+    public Page<ShopEntity> findShopsByGPS(Double lat, Double lnt, Pageable pageable) {
+        return shopRepository.findShopsByGPS(lat,lnt, pageable);
     }
 
 
