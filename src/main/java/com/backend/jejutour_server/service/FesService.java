@@ -7,7 +7,6 @@ import java.util.List;
 
 public interface FesService {
     public List<FesEntity> getAllFesList();
-    public FesEntity getFes (int Fesid);
 
     public List<FesEntity> getitemsRegion2CdValueFesList(Long itemsRegion2CdValue);
 
