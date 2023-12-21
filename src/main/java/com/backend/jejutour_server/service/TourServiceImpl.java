@@ -4,6 +4,8 @@ import com.backend.jejutour_server.entity.AccomEntity;
 import com.backend.jejutour_server.entity.TourEntity;
 import com.backend.jejutour_server.repository.TourRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -35,8 +37,7 @@ public class TourServiceImpl implements TourService {
     }
 
     @Override
-    public List<TourEntity> findToursByGPS(Double lat, Double lnt) {
-        List<TourEntity> tourList = tourRepository.findToursByGPS(lat,lnt);
-        return tourList;
+    public Page<TourEntity> findToursByGPS(Double lat, Double lnt, Pageable pageable) {
+        return tourRepository.findToursByGPS(lat,lnt, pageable);
     }
 }

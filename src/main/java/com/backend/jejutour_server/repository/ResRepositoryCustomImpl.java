@@ -30,7 +30,7 @@ public class ResRepositoryCustomImpl implements ResRepositoryCustom {
         // 3km를 미터 단위로 변환
         double radius = 4500; // 4.5km
 
-        String jpql = "SELECT t FROM TourEntity t WHERE ST_Distance_Sphere(point(t.itemsLongitude, t.itemsLatitude), point(:lnt, :lat)) <= :radius";
+        String jpql = "SELECT t FROM ResEntity t WHERE ST_Distance_Sphere(point(t.itemsLongitude, t.itemsLatitude), point(:lnt, :lat)) <= :radius";
         TypedQuery<ResEntity> query = entityManager.createQuery(jpql, ResEntity.class);
         query.setParameter("lat", lat);
         query.setParameter("lnt", lnt);

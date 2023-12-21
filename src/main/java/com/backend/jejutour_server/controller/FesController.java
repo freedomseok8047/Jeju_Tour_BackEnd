@@ -16,7 +16,7 @@ import java.util.List;
 public class FesController {
 
     @Autowired
-    FesService fesService;
+    private FesService fesService;
 
     @GetMapping("/fesAllList")
     public List<FesEntity> FesList() {
