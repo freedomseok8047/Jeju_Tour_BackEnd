@@ -54,7 +54,7 @@ public class TourController {
         return tourList;
     }
 
-    @GetMapping("/tourList/tourByGPS/")
+    @GetMapping("/tourList/tourByGPS")
     @ResponseBody
     public List<TourEntity> getToursByGPS(
 //  인스턴스에 감싸서 보내기
@@ -68,15 +68,18 @@ public class TourController {
             //  밑에 size부분도 변수로 전달
             //  => Pageable pageable = PageRequest.of( page, size);
 
-            @RequestParam(value = "page", defaultValue = "0") int page,
+
             @RequestParam(value = "lat") Double lat,
-            @RequestParam(value = "lnt") Double lnt
+            @RequestParam(value = "lnt") Double lnt,
+            @RequestParam(value = "page") int page
+//            @RequestParam(value = "page", defaultValue = "0") int page
+//            @RequestParam(value = "page") Integer page
     ) {
 
         Pageable pageable = PageRequest.of( page, 5);
         Page<TourEntity> Tours = tourService.findToursByGPS(lat, lnt, pageable);
 
-        System.out.println("lat : " + lat + "lnt : " + lnt );
+        System.out.println("통신 제대로 되나 확인 lat : " + lat + " lnt : " + lnt + " page : " + page);
 
         // Todo getContent() 메서드 사용하면 프런트에서 모델링 필요없음
         // 인스턴스 껍질 다 까서 컨텐츠 알맹이만 보내기

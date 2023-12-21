@@ -7,5 +7,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface FesRepository extends JpaRepository<FesEntity,Integer>, FesRepositoryCustom {
-    List<FesEntity> findByItemsRegion2CdValue(Long region2cd_label);
+    List<FesEntity> findByItemsRegion2CdValue(Long region2cd_laberl);
 }

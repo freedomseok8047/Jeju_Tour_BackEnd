@@ -26,10 +26,6 @@ public class FesServiceImpl implements FesService{
         return fesList;
     }
 
-    @Override
-    public FesEntity getFes(int fesid) {
-        return null;
-    }
 
     @Override
     public List<FesEntity> getitemsRegion2CdValueFesList(Long itemsRegion2CdValue) {

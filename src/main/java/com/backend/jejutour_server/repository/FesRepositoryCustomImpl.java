@@ -28,9 +28,9 @@ public class FesRepositoryCustomImpl implements FesRepositoryCustom {
     // 위도 경도 기준 n Km 내에 있는 데이터 조회하는 Query
     public List<FesEntity> findFesByGPS(Double lat, Double lnt) {
         // 3km를 미터 단위로 변환
-        double radius = 4500; // 4.5km
+        double radius = 10000; // 4.5km
 
-        String jpql = "SELECT t FROM TourEntity t WHERE ST_Distance_Sphere(point(t.itemsLongitude, t.itemsLatitude), point(:lnt, :lat)) <= :radius";
+        String jpql = "SELECT t FROM FesEntity t WHERE ST_Distance_Sphere(point(t.itemsLongitude, t.itemsLatitude), point(:lnt, :lat)) <= :radius";
         TypedQuery<FesEntity> query = entityManager.createQuery(jpql, FesEntity.class);
         query.setParameter("lat", lat);
         query.setParameter("lnt", lnt);
