@@ -1,7 +1,9 @@
 package com.backend.jejutour_server.repository;
 
 import com.backend.jejutour_server.entity.AccomEntity;
-import com.backend.jejutour_server.entity.ResEntity;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -25,8 +27,8 @@ public class AccomRepositoryCustomImpl implements AccomRepositoryCustom {
 //    }
 
 
-    // 위도 경도 기준 n Km 내에 있는 데이터 조회하는 Query
-    public List<AccomEntity> findAccomsByGPS(Double lat, Double lnt) {
+    // 위도 경도 기준 n Km 내에 있는 데이터 조회하는 Quer
+    public Page<AccomEntity> findAccomsByGPS(Double lat, Double lnt, Pageable pageable) {
         // 3km를 미터 단위로 변환
         double radius = 4500; // 4.5km
 
@@ -36,6 +38,12 @@ public class AccomRepositoryCustomImpl implements AccomRepositoryCustom {
         query.setParameter("lnt", lnt);
         query.setParameter("radius", radius);
 
-        return query.getResultList();
+        // Set pagination parameters
+        query.setFirstResult((int) pageable.getOffset());
+        query.setMaxResults(pageable.getPageSize());
+
+        List<AccomEntity> content = query.getResultList();
+
+        return new PageImpl<>(content);
     }
 }

@@ -5,6 +5,8 @@ import com.backend.jejutour_server.entity.FesEntity;
 import com.backend.jejutour_server.entity.TourEntity;
 import com.backend.jejutour_server.repository.FesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -37,9 +39,8 @@ public class FesServiceImpl implements FesService{
     }
 
     @Override
-    public List<FesEntity> findFesByGPS(Double lat, Double lnt) {
-        List<FesEntity> fesList = fesRepository.findFesByGPS(lat,lnt);
-        return fesList;
+    public Page<FesEntity> findFesByGPS(Double lat, Double lnt, Pageable pageable) {
+        return fesRepository.findFesByGPS(lat,lnt, pageable);
     }
 
 
