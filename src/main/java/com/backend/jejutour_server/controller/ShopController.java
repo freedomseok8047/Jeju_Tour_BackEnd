@@ -7,6 +7,9 @@ import com.backend.jejutour_server.service.FesService;
 import com.backend.jejutour_server.service.ShopService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.UnsupportedEncodingException;
@@ -54,9 +57,14 @@ public class ShopController {
     @ResponseBody
     public List<ShopEntity> getShopsByGPS(
             @RequestParam(value = "lat") Double lat,
-            @RequestParam(value = "lnt") Double lnt
+            @RequestParam(value = "lnt") Double lnt,
+            @RequestParam(value = "page") int page
     ) {
-        System.out.println("lat : " + lat + "lnt : " + lnt );
-        return shopService.findShopsByGPS(lat, lnt);
+        Pageable pageable = PageRequest.of( page, 5);
+        Page<ShopEntity> Shops = shopService.findShopsByGPS(lat, lnt, pageable);
+
+        System.out.println("통신 제대로 되나 확인 lat : " + lat + " lnt : " + lnt + " page : " + page);
+
+        return Shops.getContent();
     }
 }

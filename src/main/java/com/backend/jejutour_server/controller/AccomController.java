@@ -6,6 +6,9 @@ import com.backend.jejutour_server.entity.TourEntity;
 import com.backend.jejutour_server.service.AccomService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.UnsupportedEncodingException;
@@ -40,14 +43,20 @@ public class AccomController {
         return accomList;
     }
     // 프런트에서 넘오온 위,경도로 데이터 분류
+
     @GetMapping("/accomList/accomByGPS")
     @ResponseBody
     public List<AccomEntity> getAccomsByGPS(
             @RequestParam(value = "lat") Double lat,
-            @RequestParam(value = "lnt") Double lnt
+            @RequestParam(value = "lnt") Double lnt,
+            @RequestParam(value = "page") int page
     ) {
+        Pageable pageable = PageRequest.of( page, 5);
+        Page<AccomEntity> Accoms = accomService.findAccomsByGPS(lat, lnt, pageable);
+
         System.out.println("lat : " + lat + "lnt : " + lnt );
-        return accomService.findAccomsByGPS(lat, lnt);
+
+        return Accoms.getContent();
     }
 
 

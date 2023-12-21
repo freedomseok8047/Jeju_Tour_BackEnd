@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface TourService {
 
-    public List<TourEntity> getAllTourList();
+    public Page<TourEntity> getAllTourList(Pageable pageable);
     public List<TourEntity> getItemsRegion2CdValueTourList(Long itemsRegion2CdValue);
 
     public Page<TourEntity> findToursByGPS(Double lat, Double lnt, Pageable pageable );

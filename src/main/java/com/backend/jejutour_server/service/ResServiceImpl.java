@@ -4,6 +4,8 @@ import com.backend.jejutour_server.entity.ResEntity;
 import com.backend.jejutour_server.entity.TourEntity;
 import com.backend.jejutour_server.repository.ResRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -32,8 +34,7 @@ public class ResServiceImpl implements ResService{
     }
 
     @Override
-    public List<ResEntity> findResByGPS(Double lat, Double lnt) {
-        List<ResEntity> resList = resRepository.findResByGPS(lat,lnt);
-        return resList;
+    public Page<ResEntity> findResByGPS(Double lat, Double lnt, Pageable pageable) {
+        return resRepository.findResByGPS(lat,lnt, pageable);
     }
 }
