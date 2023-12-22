@@ -1,7 +1,6 @@
 package com.backend.jejutour_server.controller;
 
 import com.backend.jejutour_server.entity.FesEntity;
-import com.backend.jejutour_server.entity.TourEntity;
 import com.backend.jejutour_server.service.FesService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +9,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.EntityNotFoundException;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
 
@@ -20,6 +20,21 @@ public class FesController {
 
     @Autowired
     private FesService fesService;
+
+    @GetMapping("/fesDtl")
+    public List<FesEntity> FesList(
+            @RequestParam(value = "fesId", defaultValue = "1") Long fesId) {
+
+        try {
+            List<FesEntity> fesList = fesService.getFesDtl(fesId);
+            System.out.println("fesDtl 통신 제대로 되나 확인  : " + fesId);
+            return fesList;
+        } catch(EntityNotFoundException e){
+            System.out.println("fesDtl 통신 실패 : " + fesId);
+            return null;
+        }
+
+    }
 
     @GetMapping("/fesAllList")
     public List<FesEntity> FesList() {

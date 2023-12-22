@@ -10,6 +10,8 @@ import java.util.List;
 
 public interface ResService {
 
+    public List<ResEntity> getResDtl(Long resId);
+
     public List<ResEntity> getAllResList();
 
     public List<ResEntity> getItemsRegion2CdValueResList(Long itemsRegion2CdValue);

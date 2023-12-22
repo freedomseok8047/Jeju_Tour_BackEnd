@@ -14,6 +14,13 @@ public class ResServiceImpl implements ResService{
 
     @Autowired
     private ResRepository resRepository;
+
+    @Override
+    public List<ResEntity> getResDtl(Long resId) {
+        List<ResEntity> resList = resRepository.findByFndId(resId);
+                return resList;
+    }
+
     @Override
     public List<ResEntity> getAllResList() {
         List<ResEntity> resList = resRepository.findAll();

@@ -10,4 +10,6 @@ import java.util.List;
 public interface AccomRepository extends JpaRepository<AccomEntity, Integer>, AccomRepositoryCustom {
 
     List<AccomEntity> findByItemsRegion2CdValue(Long items_region2cd_value);
+
+    List<AccomEntity> findByAccomId(long accomId);
 }

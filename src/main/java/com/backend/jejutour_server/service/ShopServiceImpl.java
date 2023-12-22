@@ -18,6 +18,12 @@ public class ShopServiceImpl implements ShopService{
 
 
     @Override
+    public List<ShopEntity> getShopDtl(Long shopId) {
+        List<ShopEntity> shopList = shopRepository.findByShopId(shopId);
+        return shopList;
+    }
+
+    @Override
     public List<ShopEntity> getAllShopList() {
         List<ShopEntity> shopList = shopRepository.findAll();
         for (int i = 1; i < shopList.size(); i++) {

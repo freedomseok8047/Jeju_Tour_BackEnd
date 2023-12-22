@@ -17,6 +17,12 @@ public class AccomServiceImpl implements AccomService {
     private AccomRepository accomRepository;
 
     @Override
+    public List<AccomEntity> getAccomDtl(Long accomId) {
+        List<AccomEntity> accomList = accomRepository.findByAccomId(accomId);
+        return accomList;
+    }
+
+    @Override
     public List<AccomEntity> getAllAccomList() {
         List<AccomEntity> accomList= accomRepository.findAll();
         for (int i = 1 ; i < accomList.size(); i++) {

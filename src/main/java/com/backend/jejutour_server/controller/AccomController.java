@@ -11,6 +11,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.EntityNotFoundException;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
 
@@ -21,6 +22,21 @@ public class AccomController {
 
     @Autowired
     private AccomService accomService;
+
+    @GetMapping("/accomDtl")
+    public List<AccomEntity> TourList(
+            @RequestParam(value = "accomId", defaultValue = "1") Long accomId) {
+
+        try {
+            List<AccomEntity> accomList = accomService.getAccomDtl(accomId);
+            System.out.println("accomDtl 통신 제대로 되나 확인  : " + accomId);
+            return accomList;
+        } catch(EntityNotFoundException e){
+            System.out.println("accomDtl 통신 실패 : " + accomId);
+            return null;
+        }
+
+    }
 
     // 전체 출력
     @GetMapping("/accomAllList")

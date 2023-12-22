@@ -8,4 +8,6 @@ import java.util.List;
 
 public interface ResRepository extends JpaRepository<ResEntity, Integer>, ResRepositoryCustom {
     List<ResEntity> findByItemsRegion2CdValue(Long region2cd_label);
+
+    List<ResEntity> findByFndId(Long resID);
 }

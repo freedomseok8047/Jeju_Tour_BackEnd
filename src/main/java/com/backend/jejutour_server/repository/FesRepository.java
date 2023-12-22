@@ -8,4 +8,6 @@ import java.util.List;
 
 public interface FesRepository extends JpaRepository<FesEntity,Integer>, FesRepositoryCustom {
     List<FesEntity> findByItemsRegion2CdValue(Long region2cd_laberl);
+
+    List<FesEntity> findByFestivalId(Long fesId);
 }

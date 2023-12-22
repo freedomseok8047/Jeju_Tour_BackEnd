@@ -8,6 +8,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.math.BigInteger;
 import java.util.List;
 
 @Service
@@ -16,6 +17,28 @@ public class TourServiceImpl implements TourService {
     @Autowired
     private TourRepository tourRepository;
 
+
+    @Override
+    public List<TourEntity> getTourDtl(Long tourId) {
+        List<TourEntity> tourList = tourRepository.findByTourId(tourId);
+        return tourList;
+    }
+
+//    @Transactional(readOnly = true)
+//    public ItemFormDto getItemDtl(Long itemId){
+//        List<ItemImg> itemImgList = itemImgRepository.findByItemIdOrderByIdAsc(itemId);
+//        List<ItemImgDto> itemImgDtoList = new ArrayList<>();
+//        for (ItemImg itemImg : itemImgList) {
+//            ItemImgDto itemImgDto = ItemImgDto.of(itemImg);
+//            itemImgDtoList.add(itemImgDto);
+//        }
+//
+//        Item item = itemRepository.findById(itemId)
+//                .orElseThrow(EntityNotFoundException::new);
+//        ItemFormDto itemFormDto = ItemFormDto.of(item);
+//        itemFormDto.setItemImgDtoList(itemImgDtoList);
+//        return itemFormDto;
+//    }
 
     @Override
     public Page<TourEntity> getAllTourList(Pageable pageable) {

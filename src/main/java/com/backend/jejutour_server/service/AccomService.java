@@ -9,6 +9,8 @@ import java.util.List;
 
 public interface AccomService {
 
+    public List<AccomEntity> getAccomDtl(Long accomId);
+
     public List<AccomEntity> getAllAccomList();
 
     public List<AccomEntity> getitemsRegion2CdValueAccomList(Long itemsRegion2cdValue);

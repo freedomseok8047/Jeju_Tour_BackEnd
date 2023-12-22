@@ -10,7 +10,9 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.EntityNotFoundException;
 import java.io.UnsupportedEncodingException;
+import java.math.BigInteger;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,6 +23,21 @@ public class TourController {
 
     @Autowired
     TourService tourService;
+
+    @GetMapping("/tourDtl")
+    public List<TourEntity> TourList(
+            @RequestParam(value = "tourId", defaultValue = "1") Long tourId) {
+
+        try {
+        List<TourEntity> tourList = tourService.getTourDtl(tourId);
+        System.out.println("tourDtl 통신 제대로 되나 확인  : " + tourId);
+        return tourList;
+        } catch(EntityNotFoundException e){
+            System.out.println("tourDtl 통신 실패 : " + tourId);
+            return null;
+        }
+
+    }
 
 
     // tourAllList 페이징 완료
@@ -35,6 +52,8 @@ public class TourController {
         return allTours.getContent();
 
     }
+
+
 
     @GetMapping("/tourList/{itemsRegion2CdValue}")
     public List<TourEntity> TouritemsRegion2CdValueList(@PathVariable("itemsRegion2CdValue") Long itemsRegion2CdValue) throws UnsupportedEncodingException {
