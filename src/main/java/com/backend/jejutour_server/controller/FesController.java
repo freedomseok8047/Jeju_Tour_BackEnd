@@ -71,12 +71,13 @@ public class FesController {
     public List<FesEntity> getFesByGPS(
             @RequestParam(value = "lat") Double lat,
             @RequestParam(value = "lnt") Double lnt,
+            @RequestParam(value = "radius") Double radius,
             @RequestParam(value = "page") int page
     ) {
         Pageable pageable = PageRequest.of( page, 5);
-        Page<FesEntity> Fes = fesService.findFesByGPS(lat, lnt, pageable);
+        Page<FesEntity> Fes = fesService.findFesByGPS(lat, lnt, radius, pageable);
 
-        System.out.println("통신 제대로 되나 확인 lat : " + lat + " lnt : " + lnt + " page : " + page);
+        System.out.println("통신 제대로 되나 확인 lat : " + lat + " lnt : " + lnt + " page : " + page + "radius" + radius);
 
         return Fes.getContent();
     }

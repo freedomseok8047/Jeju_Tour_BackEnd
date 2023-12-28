@@ -41,8 +41,8 @@ public class AccomServiceImpl implements AccomService {
     }
 
     @Override
-    public Page<AccomEntity> findAccomsByGPS(Double lat, Double lnt, Pageable pageable ) {
-        return accomRepository.findAccomsByGPS(lat,lnt, pageable);
+    public Page<AccomEntity> findAccomsByGPS(Double lat, Double lnt,Double radius, Pageable pageable ) {
+        return accomRepository.findAccomsByGPS(lat,lnt,radius,pageable);
     }
 
 

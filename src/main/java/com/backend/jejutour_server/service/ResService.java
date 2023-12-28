@@ -16,6 +16,6 @@ public interface ResService {
 
     public List<ResEntity> getItemsRegion2CdValueResList(Long itemsRegion2CdValue);
 
-    public Page<ResEntity> findResByGPS(Double lat, Double lnt, Pageable pageable );
+    public Page<ResEntity> findResByGPS(Double lat, Double lnt,Double radius, Pageable pageable );
 
 }

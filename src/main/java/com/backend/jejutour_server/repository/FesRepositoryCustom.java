@@ -8,5 +8,5 @@ import org.springframework.data.domain.Pageable;
 import java.util.List;
 
 public interface FesRepositoryCustom {
-    Page<FesEntity> findFesByGPS(Double lat, Double lnt, Pageable pageable);
+    Page<FesEntity> findFesByGPS(Double lat, Double lnt,Double radius, Pageable pageable);
 }

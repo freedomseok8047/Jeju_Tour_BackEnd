@@ -45,8 +45,8 @@ public class FesServiceImpl implements FesService{
     }
 
     @Override
-    public Page<FesEntity> findFesByGPS(Double lat, Double lnt, Pageable pageable) {
-        return fesRepository.findFesByGPS(lat,lnt, pageable);
+    public Page<FesEntity> findFesByGPS(Double lat, Double lnt,Double radius, Pageable pageable) {
+        return fesRepository.findFesByGPS(lat,lnt,radius, pageable);
     }
 
 

@@ -29,15 +29,15 @@ public class FesRepositoryCustomImpl implements FesRepositoryCustom {
 
 
     // 위도 경도 기준 n Km 내에 있는 데이터 조회하는 Query
-    public Page<FesEntity> findFesByGPS(Double lat, Double lnt, Pageable pageable) {
+    public Page<FesEntity> findFesByGPS(Double lat, Double lnt,Double radius, Pageable pageable) {
         // 3km를 미터 단위로 변환
-        double radius = 10000; // 4.5km
+//        double radius = 10000; // 4.5km
 
         String jpql = "SELECT t FROM FesEntity t WHERE ST_Distance_Sphere(point(t.itemsLongitude, t.itemsLatitude), point(:lnt, :lat)) <= :radius";
         TypedQuery<FesEntity> query = entityManager.createQuery(jpql, FesEntity.class);
         query.setParameter("lat", lat);
         query.setParameter("lnt", lnt);
-        query.setParameter("radius", radius);
+        query.setParameter("radius", radius * 1000);
         // Set pagination parameters
         query.setFirstResult((int) pageable.getOffset());
         query.setMaxResults(pageable.getPageSize());

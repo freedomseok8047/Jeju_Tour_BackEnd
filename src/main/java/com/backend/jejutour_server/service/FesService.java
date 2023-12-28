@@ -14,5 +14,5 @@ public interface FesService {
 
     public List<FesEntity> getitemsRegion2CdValueFesList(Long itemsRegion2CdValue);
 
-    public Page<FesEntity> findFesByGPS(Double lat, Double lnt, Pageable pageable);
+    public Page<FesEntity> findFesByGPS(Double lat, Double lnt, Double radius, Pageable pageable);
 }

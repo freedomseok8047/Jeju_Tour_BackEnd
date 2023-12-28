@@ -67,10 +67,11 @@ public class AccomController {
     public List<AccomEntity> getAccomsByGPS(
             @RequestParam(value = "lat") Double lat,
             @RequestParam(value = "lnt") Double lnt,
+            @RequestParam(value = "radius") Double radius,
             @RequestParam(value = "page") int page
     ) {
         Pageable pageable = PageRequest.of( page, 5);
-        Page<AccomEntity> Accoms = accomService.findAccomsByGPS(lat, lnt, pageable);
+        Page<AccomEntity> Accoms = accomService.findAccomsByGPS(lat, lnt, radius, pageable);
 
         System.out.println("lat : " + lat + "lnt : " + lnt );
 

@@ -48,8 +48,8 @@ public class ShopServiceImpl implements ShopService{
     }
 
     @Override
-    public Page<ShopEntity> findShopsByGPS(Double lat, Double lnt, Pageable pageable) {
-        return shopRepository.findShopsByGPS(lat,lnt, pageable);
+    public Page<ShopEntity> findShopsByGPS(Double lat, Double lnt,Double radius, Pageable pageable) {
+        return shopRepository.findShopsByGPS(lat,lnt,radius, pageable);
     }
 
 
