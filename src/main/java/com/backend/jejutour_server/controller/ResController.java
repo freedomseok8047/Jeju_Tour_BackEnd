@@ -10,6 +10,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.EntityNotFoundException;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
 
@@ -20,6 +21,21 @@ public class ResController {
 
     @Autowired
     private ResService resService;
+
+    @GetMapping("/resDtl")
+    public List<ResEntity> ResList(
+            @RequestParam(value = "resId", defaultValue = "1") Long resId) {
+
+        try {
+            List<ResEntity> ResList = resService.getResDtl(resId);
+            System.out.println("resDtl 통신 제대로 되나 확인  : " + resId);
+            return ResList;
+        } catch(EntityNotFoundException e){
+            System.out.println("resDtl 통신 실패 : " + resId);
+            return null;
+        }
+
+    }
 
     // 전체 출력
     @GetMapping("/resAllList")
@@ -60,12 +76,13 @@ public class ResController {
     public List<ResEntity> getResByGPS(
             @RequestParam(value = "lat") Double lat,
             @RequestParam(value = "lnt") Double lnt,
+            @RequestParam(value = "radius") Double radius,
             @RequestParam(value = "page") int page
     ) {
         Pageable pageable = PageRequest.of( page, 5);
-        Page<ResEntity> Res = resService.findResByGPS(lat, lnt, pageable);
+        Page<ResEntity> Res = resService.findResByGPS(lat, lnt, radius, pageable);
 
-        System.out.println("통신 제대로 되나 확인 lat : " + lat + " lnt : " + lnt + " page : " + page);
+        System.out.println("통신 제대로 되나 확인 lat : " + lat + " lnt : " + lnt + " page : " + page + "radius" + radius);
 
         return Res.getContent();
     }

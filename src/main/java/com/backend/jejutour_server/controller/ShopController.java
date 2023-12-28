@@ -12,6 +12,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.EntityNotFoundException;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
 @Log4j2
@@ -20,7 +21,22 @@ import java.util.List;
 public class ShopController {
 
     @Autowired
-    ShopService shopService;
+    private ShopService shopService;
+
+    @GetMapping("/shopDtl")
+    public List<ShopEntity> ShopList(
+            @RequestParam(value = "shopId", defaultValue = "1") Long shopId) {
+
+        try {
+            List<ShopEntity> shopList = shopService.getShopDtl(shopId);
+            System.out.println("shopDtl 통신 제대로 되나 확인  : " + shopId);
+            return shopList;
+        } catch(EntityNotFoundException e){
+            System.out.println("shopDtl 통신 실패 : " + shopId);
+            return null;
+        }
+
+    }
 
     @GetMapping("/shopAllList")
     public List<ShopEntity> ShopList() {
@@ -58,12 +74,14 @@ public class ShopController {
     public List<ShopEntity> getShopsByGPS(
             @RequestParam(value = "lat") Double lat,
             @RequestParam(value = "lnt") Double lnt,
+            @RequestParam(value = "radius") Double radius,
             @RequestParam(value = "page") int page
     ) {
         Pageable pageable = PageRequest.of( page, 5);
-        Page<ShopEntity> Shops = shopService.findShopsByGPS(lat, lnt, pageable);
+        Page<ShopEntity> Shops = shopService.findShopsByGPS(lat, lnt,radius, pageable);
 
-        System.out.println("통신 제대로 되나 확인 lat : " + lat + " lnt : " + lnt + " page : " + page);
+        System.out.println("통신 제대로 되나 확인 lat : " + lat + " lnt : " + lnt + " page : " + page + "radius" + radius);
+
 
         return Shops.getContent();
     }

@@ -9,12 +9,14 @@ import org.springframework.data.domain.Pageable;
 import java.util.List;
 
 public interface ShopService {
+
+    public List<ShopEntity> getShopDtl(Long shopId);
     public List<ShopEntity> getAllShopList();
     public ShopEntity getShop (int Shopid);
 
     public List<ShopEntity> getItemsRegion2CdValueShopList(Long itemsRegion2CdValue);
 
-    public Page<ShopEntity> findShopsByGPS(Double lat, Double lnt, Pageable pageable );
+    public Page<ShopEntity> findShopsByGPS(Double lat, Double lnt,Double radius, Pageable pageable );
 }
 
 

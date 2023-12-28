@@ -8,9 +8,11 @@ import org.springframework.data.domain.Pageable;
 import java.util.List;
 
 public interface FesService {
+
+    public List<FesEntity> getFesDtl(Long fesId);
     public List<FesEntity> getAllFesList();
 
     public List<FesEntity> getitemsRegion2CdValueFesList(Long itemsRegion2CdValue);
 
-    public Page<FesEntity> findFesByGPS(Double lat, Double lnt, Pageable pageable);
+    public Page<FesEntity> findFesByGPS(Double lat, Double lnt, Double radius, Pageable pageable);
 }

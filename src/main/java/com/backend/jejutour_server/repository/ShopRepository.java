@@ -9,4 +9,6 @@ import java.util.List;
 
 public interface ShopRepository extends JpaRepository<ShopEntity,Integer>, ShopRepositoryCustom {
     List<ShopEntity> findByItemsRegion2CdValue(Long region2cd_label);
+
+    List<ShopEntity> findByShopId(Long shopId);
 }

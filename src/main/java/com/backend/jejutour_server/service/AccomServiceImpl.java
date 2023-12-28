@@ -17,6 +17,12 @@ public class AccomServiceImpl implements AccomService {
     private AccomRepository accomRepository;
 
     @Override
+    public List<AccomEntity> getAccomDtl(Long accomId) {
+        List<AccomEntity> accomList = accomRepository.findByAccomId(accomId);
+        return accomList;
+    }
+
+    @Override
     public List<AccomEntity> getAllAccomList() {
         List<AccomEntity> accomList= accomRepository.findAll();
         for (int i = 1 ; i < accomList.size(); i++) {
@@ -35,8 +41,8 @@ public class AccomServiceImpl implements AccomService {
     }
 
     @Override
-    public Page<AccomEntity> findAccomsByGPS(Double lat, Double lnt, Pageable pageable ) {
-        return accomRepository.findAccomsByGPS(lat,lnt, pageable);
+    public Page<AccomEntity> findAccomsByGPS(Double lat, Double lnt,Double radius, Pageable pageable ) {
+        return accomRepository.findAccomsByGPS(lat,lnt,radius,pageable);
     }
 
 

@@ -8,6 +8,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.math.BigInteger;
 import java.util.List;
 
 @Service
@@ -18,14 +19,31 @@ public class TourServiceImpl implements TourService {
 
 
     @Override
-    public Page<TourEntity> getAllTourList(Pageable pageable) {
-        return tourRepository.findAll(pageable);
-//      Pageable  List<TourEntity> tourList = tourRepository.findAll();
-//        for (int i = 1; i < tourList.size(); i++) {
-//
-//            System.out.println("Service camp facltNm: " + tourList.get(i));
+    public List<TourEntity> getTourDtl(Long tourId) {
+        List<TourEntity> tourList = tourRepository.findByTourId(tourId);
+        return tourList;
+    }
+
+//    @Transactional(readOnly = true)
+//    public ItemFormDto getItemDtl(Long itemId){
+//        List<ItemImg> itemImgList = itemImgRepository.findByItemIdOrderByIdAsc(itemId);
+//        List<ItemImgDto> itemImgDtoList = new ArrayList<>();
+//        for (ItemImg itemImg : itemImgList) {
+//            ItemImgDto itemImgDto = ItemImgDto.of(itemImg);
+//            itemImgDtoList.add(itemImgDto);
 //        }
-//        return tourList;
+//
+//        Item item = itemRepository.findById(itemId)
+//                .orElseThrow(EntityNotFoundException::new);
+//        ItemFormDto itemFormDto = ItemFormDto.of(item);
+//        itemFormDto.setItemImgDtoList(itemImgDtoList);
+//        return itemFormDto;
+//    }
+
+    @Override
+    public List<TourEntity> getAllTourList() {
+        List<TourEntity> tourList = tourRepository.findAll();
+        return tourList;
     }
 
     @Override
@@ -38,7 +56,7 @@ public class TourServiceImpl implements TourService {
     }
 
     @Override
-    public Page<TourEntity> findToursByGPS(Double lat, Double lnt, Pageable pageable) {
-        return tourRepository.findToursByGPS(lat,lnt, pageable);
+    public Page<TourEntity> findToursByGPS(Double lat, Double lnt,Double radius, Pageable pageable) {
+        return tourRepository.findToursByGPS(lat,lnt,radius,pageable);
     }
 }

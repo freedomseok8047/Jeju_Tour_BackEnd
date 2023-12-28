@@ -6,14 +6,15 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.math.BigInteger;
 import java.util.List;
 
 @Repository
 public interface TourRepository extends JpaRepository<TourEntity,Integer>, TourRepositoryCustom {
 
 
-    Page<TourEntity> findAll(Pageable pageable);
-//    @Query("select m.name from TourEntity m")
-//    List<String> findNameList();
-List<TourEntity> findByItemsRegion2CdValue(Long region2cd_label);
+    List<TourEntity> findByItemsRegion2CdValue(Long region2cd_label);
+
+    List<TourEntity> findByTourId(Long tourId);
+
 }
