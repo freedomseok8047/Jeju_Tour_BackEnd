@@ -31,9 +31,9 @@ public class TourRepositoryCustomImpl implements TourRepositoryCustom {
 //    }
 
     // 위도 경도 기준 n Km 내에 있는 데이터 조회하는 Query
-    public Page<TourEntity> findToursByGPS(Double lat, Double lnt , Pageable pageable) {
+    public Page<TourEntity> findToursByGPS(Double lat, Double lnt ,Double radius, Pageable pageable) {
         // 3km를 미터 단위로 변환
-        double radius = 4500; // 4.5km
+//        double radius = 4500; // 4.5km
 
         String jpql = "SELECT t FROM TourEntity t " +
                 "WHERE ST_Distance_Sphere(point(t.itemsLongitude, t.itemsLatitude)," +
@@ -41,7 +41,7 @@ public class TourRepositoryCustomImpl implements TourRepositoryCustom {
         TypedQuery<TourEntity> query = entityManager.createQuery(jpql, TourEntity.class);
         query.setParameter("lat", lat);
         query.setParameter("lnt", lnt);
-        query.setParameter("radius", radius);
+        query.setParameter("radius", radius * 1000);
         // Set pagination parameters
         query.setFirstResult((int) pageable.getOffset());
         query.setMaxResults(pageable.getPageSize());

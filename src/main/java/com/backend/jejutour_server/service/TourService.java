@@ -12,11 +12,11 @@ public interface TourService {
 
     public List<TourEntity> getTourDtl(Long tourId);
 
-    public Page<TourEntity> getAllTourList(Pageable pageable);
+    public List<TourEntity> getAllTourList();
 
     public List<TourEntity> getItemsRegion2CdValueTourList(Long itemsRegion2CdValue);
 
-    public Page<TourEntity> findToursByGPS(Double lat, Double lnt, Pageable pageable );
+    public Page<TourEntity> findToursByGPS(Double lat, Double lnt, Double radius, Pageable pageable );
 
 
 

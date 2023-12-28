@@ -42,8 +42,10 @@ public class AccomController {
     @GetMapping("/accomAllList")
     public List<AccomEntity> AccomList() {
         List<AccomEntity> accomList = accomService.getAllAccomList();
+        System.out.println("accomAllList 호출");
         return accomList;
     }
+
     // 지역코드로 지역별 출력
     @GetMapping("/accomList/{itemsRegion2CdValue}")
     public List<AccomEntity> AccomItemsRegion2CdValueList(

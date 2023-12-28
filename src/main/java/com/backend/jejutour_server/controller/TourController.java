@@ -1,5 +1,6 @@
 package com.backend.jejutour_server.controller;
 
+import com.backend.jejutour_server.entity.AccomEntity;
 import com.backend.jejutour_server.entity.TourEntity;
 import com.backend.jejutour_server.service.TourService;
 import lombok.extern.log4j.Log4j2;
@@ -40,17 +41,13 @@ public class TourController {
     }
 
 
-    // tourAllList 페이징 완료
-    @GetMapping("/tourAllList")
-    public List<TourEntity> TourList(
-            @RequestParam(value = "page", defaultValue = "0") int page,
-            @RequestParam(value = "size", defaultValue = "5") int size
-    ) {
-        Pageable pageable = PageRequest.of( page, size);
-        Page<TourEntity> allTours = tourService.getAllTourList(pageable);
-        System.out.println("tourAllList 통신 제대로 되나 확인  page : "+ page);
-        return allTours.getContent();
 
+    @GetMapping("/tourAllList" +
+            "")
+    public List<TourEntity> TourList() {
+        List<TourEntity> tourList = tourService.getAllTourList();
+        System.out.println("tourAllList 호출");
+        return tourList;
     }
 
 
@@ -85,13 +82,14 @@ public class TourController {
     public List<TourEntity> getToursByGPS(
             @RequestParam(value = "lat") Double lat,
             @RequestParam(value = "lnt") Double lnt,
+            @RequestParam(value = "radius") Double radius,
             @RequestParam(value = "page") int page
     ) {
 
         Pageable pageable = PageRequest.of( page, 5);
-        Page<TourEntity> Tours = tourService.findToursByGPS(lat, lnt, pageable);
+        Page<TourEntity> Tours = tourService.findToursByGPS(lat, lnt, radius, pageable);
 
-        System.out.println("통신 제대로 되나 확인 lat : " + lat + " lnt : " + lnt + " page : " + page);
+        System.out.println("통신 제대로 되나 확인 lat : " + lat + " lnt : " + lnt + " page : " + page + "radius" + radius);
 
         return Tours.getContent();
     }

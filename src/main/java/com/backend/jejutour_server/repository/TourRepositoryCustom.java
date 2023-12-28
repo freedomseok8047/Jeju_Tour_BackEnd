@@ -7,5 +7,5 @@ import org.springframework.data.domain.Pageable;
 import java.util.List;
 
 public interface TourRepositoryCustom {
-    Page<TourEntity> findToursByGPS(Double lat, Double lnt, Pageable pageable);
+    Page<TourEntity> findToursByGPS(Double lat, Double lnt, Double radius, Pageable pageable);
 }

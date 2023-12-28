@@ -41,14 +41,9 @@ public class TourServiceImpl implements TourService {
 //    }
 
     @Override
-    public Page<TourEntity> getAllTourList(Pageable pageable) {
-        return tourRepository.findAll(pageable);
-//      Pageable  List<TourEntity> tourList = tourRepository.findAll();
-//        for (int i = 1; i < tourList.size(); i++) {
-//
-//            System.out.println("Service camp facltNm: " + tourList.get(i));
-//        }
-//        return tourList;
+    public List<TourEntity> getAllTourList() {
+        List<TourEntity> tourList = tourRepository.findAll();
+        return tourList;
     }
 
     @Override
@@ -61,7 +56,7 @@ public class TourServiceImpl implements TourService {
     }
 
     @Override
-    public Page<TourEntity> findToursByGPS(Double lat, Double lnt, Pageable pageable) {
-        return tourRepository.findToursByGPS(lat,lnt, pageable);
+    public Page<TourEntity> findToursByGPS(Double lat, Double lnt,Double radius, Pageable pageable) {
+        return tourRepository.findToursByGPS(lat,lnt,radius,pageable);
     }
 }
