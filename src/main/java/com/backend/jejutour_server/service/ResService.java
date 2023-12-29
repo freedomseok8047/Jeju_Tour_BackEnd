@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface ResService {
 
-    public List<ResEntity> getResDtl(Long resId);
+    public List<ResEntity> getResDtl(Long fndId);
 
     public List<ResEntity> getAllResList();
 

@@ -23,7 +23,7 @@ public class AccomController {
     @Autowired
     private AccomService accomService;
 
-    @GetMapping("/accomDtl")
+    @GetMapping("/accomDtl/{accomId}")
     public List<AccomEntity> TourList(
             @RequestParam(value = "accomId", defaultValue = "1") Long accomId) {
 
@@ -73,7 +73,7 @@ public class AccomController {
         Pageable pageable = PageRequest.of( page, 5);
         Page<AccomEntity> Accoms = accomService.findAccomsByGPS(lat, lnt, radius, pageable);
 
-        System.out.println("lat : " + lat + "lnt : " + lnt );
+        System.out.println("accomByGPS 통신 확인 lat : " + lat + " lnt : " + lnt + " page : " + page + " radius : " + radius);
 
         return Accoms.getContent();
     }

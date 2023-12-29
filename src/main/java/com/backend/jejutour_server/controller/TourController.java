@@ -25,7 +25,7 @@ public class TourController {
     @Autowired
     TourService tourService;
 
-    @GetMapping("/tourDtl")
+    @GetMapping("/tourDtl/{tourId}")
     public List<TourEntity> TourList(
             @RequestParam(value = "tourId", defaultValue = "1") Long tourId) {
 
@@ -89,7 +89,7 @@ public class TourController {
         Pageable pageable = PageRequest.of( page, 5);
         Page<TourEntity> Tours = tourService.findToursByGPS(lat, lnt, radius, pageable);
 
-        System.out.println("통신 제대로 되나 확인 lat : " + lat + " lnt : " + lnt + " page : " + page + "radius" + radius);
+        System.out.println("tourByGPS 통신 확인 lat : " + lat + " lnt : " + lnt + " page : " + page + " radius : " + radius);
 
         return Tours.getContent();
     }
