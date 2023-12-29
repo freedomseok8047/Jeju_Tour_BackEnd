@@ -21,7 +21,7 @@ public class FesController {
     @Autowired
     private FesService fesService;
 
-    @GetMapping("/fesDtl")
+    @GetMapping("/fesDtl/{fesId}")
     public List<FesEntity> FesList(
             @RequestParam(value = "fesId", defaultValue = "1") Long fesId) {
 
@@ -77,7 +77,7 @@ public class FesController {
         Pageable pageable = PageRequest.of( page, 5);
         Page<FesEntity> Fes = fesService.findFesByGPS(lat, lnt, radius, pageable);
 
-        System.out.println("통신 제대로 되나 확인 lat : " + lat + " lnt : " + lnt + " page : " + page + "radius" + radius);
+        System.out.println("fesByGPS 통신 확인 lat : " + lat + " lnt : " + lnt + " page : " + page + " radius : " + radius);
 
         return Fes.getContent();
     }

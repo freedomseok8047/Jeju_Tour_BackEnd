@@ -22,16 +22,16 @@ public class ResController {
     @Autowired
     private ResService resService;
 
-    @GetMapping("/resDtl")
+    @GetMapping("/resDtl/{fndId}")
     public List<ResEntity> ResList(
-            @RequestParam(value = "resId", defaultValue = "1") Long resId) {
+            @RequestParam(value = "fndId", defaultValue = "1") Long fndId) {
 
         try {
-            List<ResEntity> ResList = resService.getResDtl(resId);
-            System.out.println("resDtl 통신 제대로 되나 확인  : " + resId);
+            List<ResEntity> ResList = resService.getResDtl(fndId);
+            System.out.println("resDtl 통신 제대로 되나 확인  : " + fndId);
             return ResList;
         } catch(EntityNotFoundException e){
-            System.out.println("resDtl 통신 실패 : " + resId);
+            System.out.println("resDtl 통신 실패 : " + fndId);
             return null;
         }
 
@@ -82,7 +82,7 @@ public class ResController {
         Pageable pageable = PageRequest.of( page, 5);
         Page<ResEntity> Res = resService.findResByGPS(lat, lnt, radius, pageable);
 
-        System.out.println("통신 제대로 되나 확인 lat : " + lat + " lnt : " + lnt + " page : " + page + "radius" + radius);
+        System.out.println("resByGPS 통신 확인 lat : " + lat + " lnt : " + lnt + " page : " + page + " radius : " + radius);
 
         return Res.getContent();
     }

@@ -23,7 +23,7 @@ public class ShopController {
     @Autowired
     private ShopService shopService;
 
-    @GetMapping("/shopDtl")
+    @GetMapping("/shopDtl/{shopId}")
     public List<ShopEntity> ShopList(
             @RequestParam(value = "shopId", defaultValue = "1") Long shopId) {
 
@@ -80,7 +80,7 @@ public class ShopController {
         Pageable pageable = PageRequest.of( page, 5);
         Page<ShopEntity> Shops = shopService.findShopsByGPS(lat, lnt,radius, pageable);
 
-        System.out.println("통신 제대로 되나 확인 lat : " + lat + " lnt : " + lnt + " page : " + page + "radius" + radius);
+        System.out.println("shopByGPS 통신 확인 lat : " + lat + " lnt : " + lnt + " page : " + page + " radius : " + radius);
 
 
         return Shops.getContent();
