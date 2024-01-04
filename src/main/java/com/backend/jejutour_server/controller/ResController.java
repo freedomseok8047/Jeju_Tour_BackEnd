@@ -24,8 +24,7 @@ public class ResController {
 
     @GetMapping("/resDtl/{fndId}")
     public List<ResEntity> ResList(
-            @RequestParam(value = "fndId", defaultValue = "1") Long fndId) {
-
+            @PathVariable("fndId") Long fndId) throws UnsupportedEncodingException{
         try {
             List<ResEntity> ResList = resService.getResDtl(fndId);
             System.out.println("resDtl 통신 제대로 되나 확인  : " + fndId);
