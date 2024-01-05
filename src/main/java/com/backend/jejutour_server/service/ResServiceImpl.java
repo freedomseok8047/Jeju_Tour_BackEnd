@@ -1,5 +1,6 @@
 package com.backend.jejutour_server.service;
 
+import com.backend.jejutour_server.dto.ResByGpsDto;
 import com.backend.jejutour_server.entity.ResEntity;
 import com.backend.jejutour_server.entity.TourEntity;
 import com.backend.jejutour_server.repository.ResRepository;
@@ -41,7 +42,7 @@ public class ResServiceImpl implements ResService{
     }
 
     @Override
-    public Page<ResEntity> findResByGPS(Double lat, Double lnt,Double radius, Pageable pageable) {
-        return resRepository.findResByGPS(lat,lnt,radius, pageable);
+    public Page<ResEntity> findResByGPS(ResByGpsDto resByGpsDto, Pageable pageable) {
+        return resRepository.findResByGPS(resByGpsDto, pageable);
     }
 }
