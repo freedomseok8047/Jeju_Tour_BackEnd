@@ -1,6 +1,7 @@
 package com.backend.jejutour_server.service;
 
 
+import com.backend.jejutour_server.dto.FesByGpsDto;
 import com.backend.jejutour_server.entity.FesEntity;
 import com.backend.jejutour_server.entity.TourEntity;
 import com.backend.jejutour_server.repository.FesRepository;
@@ -45,8 +46,8 @@ public class FesServiceImpl implements FesService{
     }
 
     @Override
-    public Page<FesEntity> findFesByGPS(Double lat, Double lnt,Double radius, Pageable pageable) {
-        return fesRepository.findFesByGPS(lat,lnt,radius, pageable);
+    public Page<FesEntity> findFesByGPS(FesByGpsDto fesByGpsDto, Pageable pageable) {
+        return fesRepository.findFesByGPS(fesByGpsDto, pageable);
     }
 
 

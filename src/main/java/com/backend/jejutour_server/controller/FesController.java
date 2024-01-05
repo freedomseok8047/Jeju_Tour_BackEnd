@@ -1,5 +1,6 @@
 package com.backend.jejutour_server.controller;
 
+import com.backend.jejutour_server.dto.FesByGpsDto;
 import com.backend.jejutour_server.entity.FesEntity;
 import com.backend.jejutour_server.service.FesService;
 import lombok.extern.log4j.Log4j2;
@@ -71,10 +72,11 @@ public class FesController {
             @RequestParam(value = "lat") Double lat,
             @RequestParam(value = "lnt") Double lnt,
             @RequestParam(value = "radius") Double radius,
-            @RequestParam(value = "page") int page
+            @RequestParam(value = "page") int page,
+            FesByGpsDto fesByGpsDto
     ) {
         Pageable pageable = PageRequest.of( page, 5);
-        Page<FesEntity> Fes = fesService.findFesByGPS(lat, lnt, radius, pageable);
+        Page<FesEntity> Fes = fesService.findFesByGPS(fesByGpsDto, pageable);
 
         System.out.println("fesByGPS 통신 확인 lat : " + lat + " lnt : " + lnt + " page : " + page + " radius : " + radius);
 

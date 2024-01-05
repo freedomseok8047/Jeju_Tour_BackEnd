@@ -1,5 +1,6 @@
 package com.backend.jejutour_server.controller;
 
+import com.backend.jejutour_server.dto.ShopByGpsDto;
 import com.backend.jejutour_server.entity.FesEntity;
 import com.backend.jejutour_server.entity.ShopEntity;
 import com.backend.jejutour_server.entity.TourEntity;
@@ -74,10 +75,11 @@ public class ShopController {
             @RequestParam(value = "lat") Double lat,
             @RequestParam(value = "lnt") Double lnt,
             @RequestParam(value = "radius") Double radius,
-            @RequestParam(value = "page") int page
+            @RequestParam(value = "page") int page,
+            ShopByGpsDto shopByGpsDto
     ) {
         Pageable pageable = PageRequest.of( page, 5);
-        Page<ShopEntity> Shops = shopService.findShopsByGPS(lat, lnt,radius, pageable);
+        Page<ShopEntity> Shops = shopService.findShopsByGPS(shopByGpsDto, pageable);
 
         System.out.println("shopByGPS 통신 확인 lat : " + lat + " lnt : " + lnt + " page : " + page + " radius : " + radius);
 
