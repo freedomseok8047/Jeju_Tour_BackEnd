@@ -1,6 +1,7 @@
 package com.backend.jejutour_server.controller;
 
 
+import com.backend.jejutour_server.dto.AccomByGpsDto;
 import com.backend.jejutour_server.entity.AccomEntity;
 import com.backend.jejutour_server.entity.TourEntity;
 import com.backend.jejutour_server.service.AccomService;
@@ -67,10 +68,11 @@ public class AccomController {
             @RequestParam(value = "lat") Double lat,
             @RequestParam(value = "lnt") Double lnt,
             @RequestParam(value = "radius") Double radius,
-            @RequestParam(value = "page") int page
+            @RequestParam(value = "page") int page,
+            AccomByGpsDto accomByGpsDto
     ) {
         Pageable pageable = PageRequest.of( page, 5);
-        Page<AccomEntity> Accoms = accomService.findAccomsByGPS(lat, lnt, radius, pageable);
+        Page<AccomEntity> Accoms = accomService.findAccomsByGPS(accomByGpsDto, pageable);
 
         System.out.println("accomByGPS 통신 확인 lat : " + lat + " lnt : " + lnt + " page : " + page + " radius : " + radius);
 

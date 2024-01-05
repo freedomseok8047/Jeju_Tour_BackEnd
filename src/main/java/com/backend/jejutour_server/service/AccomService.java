@@ -1,5 +1,6 @@
 package com.backend.jejutour_server.service;
 
+import com.backend.jejutour_server.dto.AccomByGpsDto;
 import com.backend.jejutour_server.entity.AccomEntity;
 import com.backend.jejutour_server.entity.TourEntity;
 import org.springframework.data.domain.Page;
@@ -15,6 +16,6 @@ public interface AccomService {
 
     public List<AccomEntity> getitemsRegion2CdValueAccomList(Long itemsRegion2cdValue);
 
-    public Page<AccomEntity> findAccomsByGPS(Double lat, Double lnt, Double radius, Pageable pageable );
+    public Page<AccomEntity> findAccomsByGPS(AccomByGpsDto accomByGpsDto, Pageable pageable );
 
 }

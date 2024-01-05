@@ -1,5 +1,6 @@
 package com.backend.jejutour_server.service;
 
+import com.backend.jejutour_server.dto.AccomByGpsDto;
 import com.backend.jejutour_server.entity.AccomEntity;
 import com.backend.jejutour_server.entity.TourEntity;
 import com.backend.jejutour_server.repository.AccomRepository;
@@ -41,8 +42,8 @@ public class AccomServiceImpl implements AccomService {
     }
 
     @Override
-    public Page<AccomEntity> findAccomsByGPS(Double lat, Double lnt,Double radius, Pageable pageable ) {
-        return accomRepository.findAccomsByGPS(lat,lnt,radius,pageable);
+    public Page<AccomEntity> findAccomsByGPS(AccomByGpsDto accomByGpsDto, Pageable pageable ) {
+        return accomRepository.findAccomsByGPS(accomByGpsDto,pageable);
     }
 
 

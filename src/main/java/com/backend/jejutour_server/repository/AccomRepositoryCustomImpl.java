@@ -1,5 +1,6 @@
 package com.backend.jejutour_server.repository;
 
+import com.backend.jejutour_server.dto.AccomByGpsDto;
 import com.backend.jejutour_server.entity.AccomEntity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -28,15 +29,15 @@ public class AccomRepositoryCustomImpl implements AccomRepositoryCustom {
 
 
     // 위도 경도 기준 n Km 내에 있는 데이터 조회하는 Quer
-    public Page<AccomEntity> findAccomsByGPS(Double lat, Double lnt,Double radius, Pageable pageable) {
+    public Page<AccomEntity> findAccomsByGPS(AccomByGpsDto accomByGpsDto, Pageable pageable) {
         // 3km를 미터 단위로 변환
 //        double radius = 4500; // 4.5km
 
         String jpql = "SELECT t FROM AccomEntity t WHERE ST_Distance_Sphere(point(t.itemsLongitude, t.itemsLatitude), point(:lnt, :lat)) <= :radius";
         TypedQuery<AccomEntity> query = entityManager.createQuery(jpql, AccomEntity.class);
-        query.setParameter("lat", lat);
-        query.setParameter("lnt", lnt);
-        query.setParameter("radius", radius * 1000);
+        query.setParameter("lat", accomByGpsDto.getLat());
+        query.setParameter("lnt", accomByGpsDto.getLnt());
+        query.setParameter("radius", accomByGpsDto.getRadius() * 1000);
 
         // Set pagination parameters
         query.setFirstResult((int) pageable.getOffset());
