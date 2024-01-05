@@ -1,5 +1,6 @@
 package com.backend.jejutour_server.controller;
 
+import com.backend.jejutour_server.dto.ResByGpsDto;
 import com.backend.jejutour_server.entity.ResEntity;
 import com.backend.jejutour_server.entity.TourEntity;
 import com.backend.jejutour_server.service.ResService;
@@ -76,10 +77,11 @@ public class ResController {
             @RequestParam(value = "lat") Double lat,
             @RequestParam(value = "lnt") Double lnt,
             @RequestParam(value = "radius") Double radius,
-            @RequestParam(value = "page") int page
+            @RequestParam(value = "page") int page,
+            ResByGpsDto resByGpsDto
     ) {
         Pageable pageable = PageRequest.of( page, 5);
-        Page<ResEntity> Res = resService.findResByGPS(lat, lnt, radius, pageable);
+        Page<ResEntity> Res = resService.findResByGPS(resByGpsDto, pageable);
 
         System.out.println("resByGPS 통신 확인 lat : " + lat + " lnt : " + lnt + " page : " + page + " radius : " + radius);
 

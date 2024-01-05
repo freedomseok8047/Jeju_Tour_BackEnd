@@ -1,5 +1,6 @@
 package com.backend.jejutour_server.service;
 
+import com.backend.jejutour_server.dto.ShopByGpsDto;
 import com.backend.jejutour_server.entity.ShopEntity;
 import com.backend.jejutour_server.entity.TourEntity;
 import com.backend.jejutour_server.repository.ShopRepository;
@@ -48,8 +49,8 @@ public class ShopServiceImpl implements ShopService{
     }
 
     @Override
-    public Page<ShopEntity> findShopsByGPS(Double lat, Double lnt,Double radius, Pageable pageable) {
-        return shopRepository.findShopsByGPS(lat,lnt,radius, pageable);
+    public Page<ShopEntity> findShopsByGPS(ShopByGpsDto shopByGpsDto, Pageable pageable) {
+        return shopRepository.findShopsByGPS(shopByGpsDto, pageable);
     }
 
 

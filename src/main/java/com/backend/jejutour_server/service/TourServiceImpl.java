@@ -1,5 +1,6 @@
 package com.backend.jejutour_server.service;
 
+import com.backend.jejutour_server.dto.TourByGpsDto;
 import com.backend.jejutour_server.entity.AccomEntity;
 import com.backend.jejutour_server.entity.TourEntity;
 import com.backend.jejutour_server.repository.TourRepository;
@@ -56,7 +57,7 @@ public class TourServiceImpl implements TourService {
     }
 
     @Override
-    public Page<TourEntity> findToursByGPS(Double lat, Double lnt,Double radius, Pageable pageable) {
-        return tourRepository.findToursByGPS(lat,lnt,radius,pageable);
+    public Page<TourEntity> findToursByGPS(TourByGpsDto tourByGpsDto, Pageable pageable) {
+        return tourRepository.findToursByGPS(tourByGpsDto, pageable);
     }
 }

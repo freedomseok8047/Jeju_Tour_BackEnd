@@ -2,10 +2,9 @@ package com.backend.jejutour_server.dto;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @Getter @Setter
-public class TourByGpsDto {
+public class ResByGpsDto {
     private Double lat;
     private Double lnt;
     private Double radius;
