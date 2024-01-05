@@ -25,8 +25,7 @@ public class ShopController {
 
     @GetMapping("/shopDtl/{shopId}")
     public List<ShopEntity> ShopList(
-            @RequestParam(value = "shopId", defaultValue = "1") Long shopId) {
-
+            @PathVariable("shopId") Long shopId) throws UnsupportedEncodingException{
         try {
             List<ShopEntity> shopList = shopService.getShopDtl(shopId);
             System.out.println("shopDtl 통신 제대로 되나 확인  : " + shopId);

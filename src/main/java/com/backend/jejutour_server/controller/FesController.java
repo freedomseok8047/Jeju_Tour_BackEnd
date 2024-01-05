@@ -23,8 +23,7 @@ public class FesController {
 
     @GetMapping("/fesDtl/{fesId}")
     public List<FesEntity> FesList(
-            @RequestParam(value = "fesId", defaultValue = "1") Long fesId) {
-
+            @PathVariable("fesId") Long fesId) throws UnsupportedEncodingException{
         try {
             List<FesEntity> fesList = fesService.getFesDtl(fesId);
             System.out.println("fesDtl 통신 제대로 되나 확인  : " + fesId);

@@ -27,18 +27,17 @@ public class TourController {
 
     @GetMapping("/tourDtl/{tourId}")
     public List<TourEntity> TourList(
-            @RequestParam(value = "tourId", defaultValue = "1") Long tourId) {
-
+            @PathVariable("tourId") Long tourId) throws UnsupportedEncodingException{
         try {
-        List<TourEntity> tourList = tourService.getTourDtl(tourId);
-        System.out.println("tourDtl 통신 제대로 되나 확인  : " + tourId);
-        return tourList;
-        } catch(EntityNotFoundException e){
+            List<TourEntity> tourList = tourService.getTourDtl(tourId);
+            System.out.println("tourDtl 통신 제대로 되나 확인  : " + tourId);
+            return tourList;
+        } catch (EntityNotFoundException e) {
             System.out.println("tourDtl 통신 실패 : " + tourId);
             return null;
         }
-
     }
+
 
 
 

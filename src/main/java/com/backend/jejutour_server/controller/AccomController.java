@@ -25,8 +25,7 @@ public class AccomController {
 
     @GetMapping("/accomDtl/{accomId}")
     public List<AccomEntity> TourList(
-            @RequestParam(value = "accomId", defaultValue = "1") Long accomId) {
-
+            @PathVariable("accomId") Long accomId) throws UnsupportedEncodingException{
         try {
             List<AccomEntity> accomList = accomService.getAccomDtl(accomId);
             System.out.println("accomDtl 통신 제대로 되나 확인  : " + accomId);
