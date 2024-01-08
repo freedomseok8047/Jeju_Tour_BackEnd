@@ -25,22 +25,6 @@ public class TourServiceImpl implements TourService {
         return tourList;
     }
 
-//    @Transactional(readOnly = true)
-//    public ItemFormDto getItemDtl(Long itemId){
-//        List<ItemImg> itemImgList = itemImgRepository.findByItemIdOrderByIdAsc(itemId);
-//        List<ItemImgDto> itemImgDtoList = new ArrayList<>();
-//        for (ItemImg itemImg : itemImgList) {
-//            ItemImgDto itemImgDto = ItemImgDto.of(itemImg);
-//            itemImgDtoList.add(itemImgDto);
-//        }
-//
-//        Item item = itemRepository.findById(itemId)
-//                .orElseThrow(EntityNotFoundException::new);
-//        ItemFormDto itemFormDto = ItemFormDto.of(item);
-//        itemFormDto.setItemImgDtoList(itemImgDtoList);
-//        return itemFormDto;
-//    }
-
     @Override
     public List<TourEntity> getAllTourList() {
         List<TourEntity> tourList = tourRepository.findAll();

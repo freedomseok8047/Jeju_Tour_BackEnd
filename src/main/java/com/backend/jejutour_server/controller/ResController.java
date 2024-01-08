@@ -25,31 +25,67 @@ public class ResController {
 
     @GetMapping("/resDtl/{fndId}")
     public List<ResEntity> ResList(
-            @PathVariable("fndId") Long fndId) throws UnsupportedEncodingException{
+            @PathVariable("fndId") Long fndId) {
         try {
             List<ResEntity> ResList = resService.getResDtl(fndId);
-            System.out.println("resDtl 통신 제대로 되나 확인  : " + fndId);
+            System.out.println("resDtl 통신 확인  : " + fndId);
             return ResList;
         } catch(EntityNotFoundException e){
             System.out.println("resDtl 통신 실패 : " + fndId);
             return null;
         }
-
     }
 
     // 전체 출력
     @GetMapping("/resAllList")
     public List<ResEntity> ResList() {
-        List<ResEntity> resList = resService.getAllResList();
-        return resList;
+        try {
+            List<ResEntity> resList = resService.getAllResList();
+            System.out.println("resAllList 통신 성공");
+            return resList;
+        } catch (EntityNotFoundException e){
+            System.out.println("resAllList 통신 실패");
+            return null;
+        }
     }
 
     // 지역별 출력
     // /campList/지역코드
     @GetMapping("/resList/{itemsRegion2CdValue}")
-    public List<ResEntity> ResItemsRegion2CdValueList(@PathVariable("itemsRegion2CdValue") Long itemsRegion2CdValue) throws UnsupportedEncodingException {
+    public List<ResEntity> ResItemsRegion2CdValueList(
+            @PathVariable("itemsRegion2CdValue") Long itemsRegion2CdValue) {
+        try {
+            List<ResEntity> resList = resService.getItemsRegion2CdValueResList(itemsRegion2CdValue);
+            System.out.println("Res 지역코드별 조회 성공");
+            return resList;
+        } catch (EntityNotFoundException e){
+            System.out.println("Res 지역코드별 조회 실패");
+            return null;
+        }
+    }
 
-        // 지역 코드
+    @GetMapping("/resList/resByGPS")
+    @ResponseBody
+    public List<ResEntity> getResByGPS(
+//            @RequestParam(value = "lat") Double lat,
+//            @RequestParam(value = "lnt") Double lnt,
+//            @RequestParam(value = "radius") Double radius,
+            ResByGpsDto resByGpsDto,
+            @RequestParam(value = "page") int page) {
+        try {
+            Pageable pageable = PageRequest.of( page, 5);
+            Page<ResEntity> Res = resService.findResByGPS(resByGpsDto, pageable);
+            System.out.println("resByGPS 통신 확인 lat : " + resByGpsDto.getLat() + " lnt : " + resByGpsDto.getLnt()
+                    + " radius : " + resByGpsDto.getRadius() + " page : " + page);
+            return Res.getContent();
+        } catch (EntityNotFoundException e) {
+            System.out.println("resByGPS 조회 실패");
+            return null;
+        }
+    }
+}
+
+// 지역 코드
 //            case 11 : test = "제주시내"; break;
 //            case 12 : test = "애월"; break;
 //            case 13 : test = "한림"; break;
@@ -66,27 +102,3 @@ public class ResController {
 //            case 31 : test = "우도"; break;
 //            case 32 : test = "추자도"; break;
 //            case 33 : test = "마라도"; break;
-
-        List<ResEntity> resList = resService.getItemsRegion2CdValueResList(itemsRegion2CdValue);
-        return resList;
-    }
-
-    @GetMapping("/resList/resByGPS")
-    @ResponseBody
-    public List<ResEntity> getResByGPS(
-            @RequestParam(value = "lat") Double lat,
-            @RequestParam(value = "lnt") Double lnt,
-            @RequestParam(value = "radius") Double radius,
-            @RequestParam(value = "page") int page,
-            ResByGpsDto resByGpsDto
-    ) {
-        Pageable pageable = PageRequest.of( page, 5);
-        Page<ResEntity> Res = resService.findResByGPS(resByGpsDto, pageable);
-
-        System.out.println("resByGPS 통신 확인 lat : " + lat + " lnt : " + lnt + " page : " + page + " radius : " + radius);
-
-        return Res.getContent();
-    }
-
-
-}

@@ -10,7 +10,7 @@ import java.math.BigInteger;
 import java.util.List;
 
 @Repository
-public interface TourRepository extends JpaRepository<TourEntity,Integer>, TourRepositoryCustom {
+public interface TourRepository extends JpaRepository<TourEntity, Long >, TourRepositoryCustom {
 
 
     List<TourEntity> findByItemsRegion2CdValue(Long region2cd_label);
