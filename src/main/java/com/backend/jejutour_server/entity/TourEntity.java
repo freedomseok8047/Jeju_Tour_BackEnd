@@ -36,7 +36,7 @@ public class TourEntity {
     @Column(name = "items__contentscd__refId", length = 255)
     private String itemsContentsCdRefId;
 
-    @Column(name = "items__title", length = 255)
+    @Column(name = "items__title", length = 255, nullable = false)
     private String itemsTitle;
 
     @Column(name = "items__region1cd__value", length = 255)
