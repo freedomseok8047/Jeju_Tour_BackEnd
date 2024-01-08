@@ -24,27 +24,65 @@ public class FesController {
 
     @GetMapping("/fesDtl/{fesId}")
     public List<FesEntity> FesList(
-            @PathVariable("fesId") Long fesId) throws UnsupportedEncodingException{
+            @PathVariable("fesId") Long fesId) {
         try {
             List<FesEntity> fesList = fesService.getFesDtl(fesId);
-            System.out.println("fesDtl 통신 제대로 되나 확인  : " + fesId);
+            System.out.println("fesDtl 통신 확인  : " + fesId);
             return fesList;
         } catch(EntityNotFoundException e){
             System.out.println("fesDtl 통신 실패 : " + fesId);
             return null;
         }
-
     }
 
     @GetMapping("/fesAllList")
     public List<FesEntity> FesList() {
+        try {
         List<FesEntity> fesList = fesService.getAllFesList();
+            System.out.println("fesAllList 호출 성공");
         return fesList;
+        } catch (EntityNotFoundException e){
+            System.out.println("fesAllList 통신 실패");
+            return null;
+        }
     }
 
     @GetMapping("/fesList/{itemsRegion2CdValue}")
-    public List<FesEntity> AccomItemsRegion2CdValueList(@PathVariable("itemsRegion2CdValue") Long itemsRegion2CdValue) throws UnsupportedEncodingException {
+    public List<FesEntity> AccomItemsRegion2CdValueList(
+            @PathVariable("itemsRegion2CdValue") Long itemsRegion2CdValue) {
+        try {
+            List<FesEntity> fesList = fesService.getitemsRegion2CdValueFesList(itemsRegion2CdValue);
+            System.out.println("Fes 지역코드별 조회 실패");
+            return fesList;
+        } catch (EntityNotFoundException e){
+            System.out.println("Fes 지역코드별 조회 실패");
+            return null;
+        }
+    }
 
+
+    @GetMapping("/fesList/fesByGPS")
+    @ResponseBody
+    public List<FesEntity> getFesByGPS(
+//            @RequestParam(value = "lat") Double lat,
+//            @RequestParam(value = "lnt") Double lnt,
+//            @RequestParam(value = "radius") Double radius,
+            FesByGpsDto fesByGpsDto,
+            @RequestParam(value = "page") int page) {
+        try {
+            Pageable pageable = PageRequest.of( page, 5);
+            Page<FesEntity> Fes = fesService.findFesByGPS(fesByGpsDto, pageable);
+            System.out.println("fesByGPS 통신 확인 lat : " + fesByGpsDto.getLat() + " lnt : " + fesByGpsDto.getLnt()
+                + " radius : " + fesByGpsDto.getRadius() + " page : " + page);
+            return Fes.getContent();
+        } catch (EntityNotFoundException e) {
+            System.out.println("fesByGPS 조회 실패");
+            return null;
+        }
+    }
+}
+
+// 지역 코드
 //            case 11 : test = "제주시내"; break;
 //            case 12 : test = "애월"; break;
 //            case 13 : test = "한림"; break;
@@ -61,25 +99,3 @@ public class FesController {
 //            case 31 : test = "우도"; break;
 //            case 32 : test = "추자도"; break;
 //            case 33 : test = "마라도"; break;
-
-        List<FesEntity> fesList = fesService.getitemsRegion2CdValueFesList(itemsRegion2CdValue);
-        return fesList;
-    }
-
-    @GetMapping("/fesList/fesByGPS")
-    @ResponseBody
-    public List<FesEntity> getFesByGPS(
-            @RequestParam(value = "lat") Double lat,
-            @RequestParam(value = "lnt") Double lnt,
-            @RequestParam(value = "radius") Double radius,
-            @RequestParam(value = "page") int page,
-            FesByGpsDto fesByGpsDto
-    ) {
-        Pageable pageable = PageRequest.of( page, 5);
-        Page<FesEntity> Fes = fesService.findFesByGPS(fesByGpsDto, pageable);
-
-        System.out.println("fesByGPS 통신 확인 lat : " + lat + " lnt : " + lnt + " page : " + page + " radius : " + radius);
-
-        return Fes.getContent();
-    }
-}

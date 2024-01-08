@@ -54,13 +54,14 @@ public class TourController {
 
 
     @GetMapping("/tourList/{itemsRegion2CdValue}")
-    public List<TourEntity> TouritemsRegion2CdValueList(@PathVariable("itemsRegion2CdValue") Long itemsRegion2CdValue) {
+    public List<TourEntity> TouritemsRegion2CdValueList(
+            @PathVariable("itemsRegion2CdValue") Long itemsRegion2CdValue) {
         try {
             List<TourEntity> tourList = tourService.getItemsRegion2CdValueTourList(itemsRegion2CdValue);
-            System.out.println("지역코드별 조회 성공");
+            System.out.println("Tour 지역코드별 조회 성공");
             return tourList;
         } catch (EntityNotFoundException e){
-            System.out.println("지역코드별 조회 실패");
+            System.out.println("Tour 지역코드별 조회 실패");
             return null;
         }
     }
@@ -69,6 +70,7 @@ public class TourController {
     @GetMapping("/tourList/tourByGPS")
     @ResponseBody
     public List<TourEntity> getToursByGPS(
+            // Dto로 파라미터 한꺼번에 처리
 //            @RequestParam(value = "lat") Double lat,
 //            @RequestParam(value = "lnt") Double lnt,
 //            @RequestParam(value = "radius") Double radius,
@@ -86,25 +88,6 @@ public class TourController {
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 // 지역 코드
