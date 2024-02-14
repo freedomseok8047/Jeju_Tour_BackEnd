@@ -1,8 +1,9 @@
 package com.backend.jejutour_server.controller;
 
-import com.backend.jejutour_server.dto.FesByGpsDto;
-import com.backend.jejutour_server.entity.FesEntity;
-import com.backend.jejutour_server.service.FesService;
+
+import com.backend.jejutour_server.dto.AccomByGpsDto;
+import com.backend.jejutour_server.entity.AccomEntity;
+import com.backend.jejutour_server.service.AccomService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -11,72 +12,73 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.EntityNotFoundException;
-import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 @Log4j2
 @RestController
-@RequestMapping("/fes")
-public class FesController {
+@RequestMapping("/accom")
+public class AccomController {
 
     @Autowired
-    private FesService fesService;
+    private AccomService accomService;
 
-    @GetMapping("/fesDtl/{fesId}")
-    public List<FesEntity> FesList(
-            @PathVariable("fesId") Long fesId) {
+    @GetMapping("/accomDtl/{accomId}")
+    public List<AccomEntity> TourList(
+            @PathVariable("accomId") Long accomId) {
         try {
-            List<FesEntity> fesList = fesService.getFesDtl(fesId);
-            System.out.println("fesDtl 통신 확인  : " + fesId);
-            return fesList;
+            List<AccomEntity> accomList = accomService.getAccomDtl(accomId);
+            System.out.println("accomDtl 통신 확인  : " + accomId);
+            return accomList;
         } catch(EntityNotFoundException e){
-            System.out.println("fesDtl 통신 실패 : " + fesId);
+            System.out.println("accomDtl 통신 실패 : " + accomId);
             return null;
         }
     }
 
-    @GetMapping("/fesAllList")
-    public List<FesEntity> FesList() {
+    // 전체 출력
+    @GetMapping("/accomAllList")
+    public List<AccomEntity> AccomList() {
         try {
-        List<FesEntity> fesList = fesService.getAllFesList();
-            System.out.println("fesAllList 호출 성공");
-        return fesList;
+            List<AccomEntity> accomList = accomService.getAllAccomList();
+            System.out.println("accomAllList 호출 성공");
+            return accomList;
         } catch (EntityNotFoundException e){
-            System.out.println("fesAllList 통신 실패");
+            System.out.println("accomAllList 통신 실패");
             return null;
         }
     }
 
-    @GetMapping("/fesList/{itemsRegion2CdValue}")
-    public List<FesEntity> AccomItemsRegion2CdValueList(
+    // 지역코드로 지역별 출력
+    @GetMapping("/accomList/{itemsRegion2CdValue}")
+    public List<AccomEntity> AccomItemsRegion2CdValueList(
             @PathVariable("itemsRegion2CdValue") Long itemsRegion2CdValue) {
         try {
-            List<FesEntity> fesList = fesService.getitemsRegion2CdValueFesList(itemsRegion2CdValue);
-            System.out.println("Fes 지역코드별 조회 실패");
-            return fesList;
+            List<AccomEntity> accomList = accomService.getitemsRegion2CdValueAccomList(itemsRegion2CdValue);
+            System.out.println("Accom 지역코드별 조회 성공");
+            return accomList;
         } catch (EntityNotFoundException e){
-            System.out.println("Fes 지역코드별 조회 실패");
+            System.out.println("Accom 지역코드별 조회 실패");
             return null;
         }
     }
 
 
-    @GetMapping("/fesList/fesByGPS")
+    @GetMapping("/accomList/accomByGPS")
     @ResponseBody
-    public List<FesEntity> getFesByGPS(
+    public List<AccomEntity> getAccomsByGPS(
 //            @RequestParam(value = "lat") Double lat,
 //            @RequestParam(value = "lnt") Double lnt,
 //            @RequestParam(value = "radius") Double radius,
-            FesByGpsDto fesByGpsDto,
+            AccomByGpsDto accomByGpsDto,
             @RequestParam(value = "page") int page) {
         try {
             Pageable pageable = PageRequest.of( page, 5);
-            Page<FesEntity> Fes = fesService.findFesByGPS(fesByGpsDto, pageable);
-            System.out.println("fesByGPS 통신 확인 lat : " + fesByGpsDto.getLat() + " lnt : " + fesByGpsDto.getLnt()
-                + " radius : " + fesByGpsDto.getRadius() + " page : " + page);
-            return Fes.getContent();
+            Page<AccomEntity> Accoms = accomService.findAccomsByGPS(accomByGpsDto, pageable);
+            System.out.println("accomByGPS 통신 확인 lat : " + accomByGpsDto.getLat() + " lnt : " + accomByGpsDto.getLnt()
+                    + " radius : " + accomByGpsDto.getRadius() + " page : " + page);
+            return Accoms.getContent();
         } catch (EntityNotFoundException e) {
-            System.out.println("fesByGPS 조회 실패");
+            System.out.println("accomByGPS 조회 실패");
             return null;
         }
     }
